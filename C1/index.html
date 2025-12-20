@@ -1,97 +1,301 @@
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "28a5f7c0617a4f8aab97e95c1ea3e1b7"}'></script><!-- End Cloudflare Web Analytics -->
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+  data-cf-beacon='{"token":"28a5f7c0617a4f8aab97e95c1ea3e1b7"}'></script>
+<!-- End Cloudflare Web Analytics -->
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WFQQ172YYK"></script>
+
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>TalkBetter｜Conjunction Practice</title>
+<title>TalkBetter｜Conjunction Practice（Christmas）</title>
 
 <style>
 :root{
-  --bg:#f6f7ff; --card:#fff; --border:#e5e7f5;
-  --text:#1f2937; --sub:#6b7280;
-  --blue:#4a6fdc; --blueSoft:#eef2ff;
-  --green:#16a34a; --greenSoft:#ecfdf5;
-  --red:#dc2626; --redSoft:#fef2f2;
-  --shadow:0 14px 34px rgba(31,41,55,.10);
-  --r:20px;
-  --tap:58px;
-}
-*{box-sizing:border-box}
-body{
-  margin:0; padding:16px 14px 26px;
-  font-family: system-ui,-apple-system,"Segoe UI","Noto Sans TC","Microsoft JhengHei",sans-serif;
-  background:var(--bg); color:var(--text);
-}
-.app{max-width:780px;margin:0 auto}
+  /* 🎄 Christmas palette */
+  --bg1:#fff7f2;
+  --bg2:#f3fff8;
 
-.top{
-  display:flex; align-items:flex-end; justify-content:space-between;
-  gap:10px; margin:6px 2px 14px;
+  --card: rgba(255,255,255,.92);
+  --border: rgba(232, 225, 220, .95);
+
+  --text:#1f2937;
+  --sub:#6b7280;
+
+  --red:#d12b2b;
+  --red2:#ff4b4b;
+  --redSoft:#fff1f1;
+
+  --green:#15803d;
+  --green2:#22c55e;
+  --greenSoft:#ecfdf5;
+
+  --gold:#c79a2b;
+  --goldSoft:#fff7dd;
+
+  --blue:#3b82f6; /* still ok for readability */
+  --blue2:#60a5fa;
+
+  --shadow:0 18px 55px rgba(31,41,55,.12);
+  --shadow2:0 10px 26px rgba(31,41,55,.10);
+
+  --r:22px;
+  --tap:60px;
 }
-.title h1{margin:0;font-size:20px}
-.title p{margin:6px 0 0;color:var(--sub);font-size:13px}
-.pill{
-  background:var(--blueSoft); color:var(--blue);
-  padding:8px 12px; border-radius:999px;
+
+*{box-sizing:border-box}
+html,body{height:100%}
+
+body{
+  margin:0;
+  padding:18px 14px 28px;
+  font-family: system-ui,-apple-system,"Segoe UI","Noto Sans TC","Microsoft JhengHei",sans-serif;
+  color:var(--text);
+
+  /* ❄️ Soft winter background */
+  background:
+    radial-gradient(900px 500px at 15% -10%, rgba(209,43,43,.16), transparent 60%),
+    radial-gradient(800px 520px at 95% 5%, rgba(34,197,94,.14), transparent 55%),
+    radial-gradient(900px 600px at 55% 110%, rgba(199,154,43,.16), transparent 60%),
+    linear-gradient(180deg, var(--bg1), var(--bg2));
+  overflow-x:hidden;
+}
+
+.app{max-width:820px;margin:0 auto; position:relative}
+
+/* ❄️ falling snow (pure CSS) */
+.snow{
+  position:fixed;
+  inset:-10px 0 0 0;
+  pointer-events:none;
+  z-index:0;
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,.85) 50%, transparent 52%),
+    radial-gradient(2px 2px at 70px 90px, rgba(255,255,255,.7) 50%, transparent 52%),
+    radial-gradient(1.6px 1.6px at 110px 40px, rgba(255,255,255,.8) 50%, transparent 52%),
+    radial-gradient(1.8px 1.8px at 160px 120px, rgba(255,255,255,.65) 50%, transparent 52%),
+    radial-gradient(2.2px 2.2px at 220px 80px, rgba(255,255,255,.75) 50%, transparent 52%);
+  background-size: 260px 260px;
+  opacity:.65;
+  animation: snowFall 9s linear infinite;
+}
+@keyframes snowFall{
+  from{transform:translateY(-60px)}
+  to{transform:translateY(260px)}
+}
+
+/* ensure content above snow */
+.top,.card,.doneOverlay{position:relative; z-index:2}
+
+/* ====== Top Header ====== */
+.top{
+  display:flex;
+  align-items:stretch;
+  justify-content:space-between;
+  gap:12px;
+  margin:6px 2px 14px;
+}
+
+.title{
+  flex:1;
+  background:rgba(255,255,255,.75);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:12px 14px;
+  box-shadow: var(--shadow2);
+  backdrop-filter: blur(4px);
+  position:relative;
+  overflow:hidden;
+}
+
+/* 🎄 Candy stripe edge */
+.title::before{
+  content:"";
+  position:absolute;
+  inset:0 auto 0 0;
+  width:8px;
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(209,43,43,.95) 0 10px,
+    rgba(255,255,255,.95) 10px 20px,
+    rgba(34,197,94,.95) 20px 30px,
+    rgba(255,255,255,.95) 30px 40px
+  );
+  opacity:.95;
+}
+
+.title h1{
+  margin:0;
+  font-size:20px;
+  letter-spacing:.2px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.title h1::before{
+  content:"🎄";
+  font-size:20px;
+}
+.title p{
+  margin:6px 0 0;
+  color:var(--sub);
   font-size:13px;
 }
 
+/* progress */
+.pillWrap{
+  width:170px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.pill{
+  background: linear-gradient(135deg, var(--red), var(--green));
+  color:#fff;
+  padding:10px 12px;
+  border-radius:18px;
+  font-size:13px;
+  font-weight:1000;
+  box-shadow:0 14px 30px rgba(209,43,43,.16);
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.pill::after{
+  content:"✨";
+  position:absolute;
+  right:10px;
+  top:8px;
+  opacity:.9;
+}
+
+.miniBar{
+  height:10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.75);
+  border:1px solid var(--border);
+  overflow:hidden;
+  box-shadow: var(--shadow2);
+}
+.miniBar > i{
+  display:block;
+  height:100%;
+  width:0%;
+  background: linear-gradient(90deg, var(--green2), var(--gold));
+  border-radius:999px;
+  transition: width .35s ease;
+}
+
+/* ====== Card ====== */
 .card{
   background:var(--card);
   border:1px solid var(--border);
   border-radius:var(--r);
-  box-shadow:var(--shadow);
+  box-shadow: var(--shadow);
   padding:18px 16px 16px;
+  position:relative;
+  overflow:hidden;
 }
 
+/* 🎁 soft ornaments */
+.card::before{
+  content:"";
+  position:absolute;
+  inset:auto -90px -90px auto;
+  width:250px;height:250px;
+  background: radial-gradient(circle at 30% 30%, rgba(34,197,94,.18), transparent 62%);
+  transform: rotate(12deg);
+  pointer-events:none;
+}
+.card::after{
+  content:"";
+  position:absolute;
+  inset:-90px auto auto -90px;
+  width:240px;height:240px;
+  background: radial-gradient(circle at 40% 40%, rgba(209,43,43,.18), transparent 62%);
+  transform: rotate(-8deg);
+  pointer-events:none;
+}
+
+/* ====== Question header ====== */
 .qRow{
-  display:flex; justify-content:space-between;
-  margin-bottom:10px
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
 }
-.qNo{font-size:13px;color:var(--sub)}
+.qNo{
+  font-size:13px;
+  color:var(--sub);
+  font-weight:900;
+}
 
+/* question box */
 .questionBox{
   margin:6px 0 12px;
   padding:12px;
-  border-radius:16px;
+  border-radius:18px;
   border:1px solid var(--border);
-  background:#fff;
+  background: linear-gradient(180deg, #ffffff, #fffdf7);
 }
-.qLabel{font-size:12px;color:var(--sub);margin-bottom:6px}
-.qText{font-size:18px;font-weight:800;line-height:1.4}
+.qLabel{
+  font-size:12px;
+  color:var(--sub);
+  margin-bottom:6px;
+  font-weight:900;
+  letter-spacing:.2px;
+}
+.qText{
+  font-size:18px;
+  font-weight:1000;
+  line-height:1.4;
+}
 
+/* sentence */
 .sentence{
   font-size:20px;
   line-height:1.55;
-  padding:12px;
-  border-radius:16px;
-  background:#fafbff;
-  border:1px dashed var(--border);
+  padding:14px 14px;
+  border-radius:18px;
+  background: linear-gradient(180deg,#ffffff,#fffaf7);
+  border:1px dashed rgba(199,154,43,.35);
   transition:.18s transform,.18s box-shadow,.18s border-color,.18s background;
+  position:relative;
 }
+.sentence::after{
+  content:"🎅";
+  position:absolute;
+  right:12px;
+  top:12px;
+  font-size:16px;
+  opacity:.35;
+}
+
 .sentence.win{
-  border-color:#22c55e;
-  background:#f0fdf4;
+  border-color:rgba(34,197,94,.65);
+  background: linear-gradient(180deg,#f0fdf4,#ffffff);
   box-shadow:0 18px 44px rgba(34,197,94,.18);
   transform: translateY(-1px);
 }
 .sentence.lose{
-  border-color:#ef4444;
-  background:#fef2f2;
+  border-color:rgba(239,68,68,.55);
+  background: linear-gradient(180deg,#fff6f6,#ffffff);
 }
 
 .blank{
-  padding:2px 10px;
+  padding:3px 12px;
   border-radius:999px;
-  border:2px solid var(--blue);
-  color:var(--blue);
-  font-weight:900;
+  border:2px solid rgba(209,43,43,.75);
+  color:var(--red);
+  font-weight:1000;
+  background: rgba(255,241,241,.9);
+  box-shadow: 0 6px 16px rgba(209,43,43,.10) inset;
 }
 
-/* ✅ 題目答對：更明顯的打勾 Badge */
+/* stamp */
 .stamp{
   margin-top:12px;
   display:none;
@@ -104,55 +308,69 @@ body{
   background:linear-gradient(180deg,#ffffff,#f3fff7);
   box-shadow:0 16px 40px rgba(34,197,94,.14);
 }
-.stamp.show{display:flex}
+.stamp.show{display:flex; animation: pop .32s ease-out;}
+@keyframes pop{
+  0%{transform:scale(.92); opacity:.2}
+  70%{transform:scale(1.03); opacity:1}
+  100%{transform:scale(1)}
+}
 .check{
-  width:42px;height:42px;
+  width:44px;height:44px;
   border-radius:999px;
-  background:#22c55e;
+  background:linear-gradient(180deg,var(--green2),var(--green));
   color:#fff;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:26px;
+  font-size:28px;
   font-weight:1000;
   box-shadow:0 10px 24px rgba(34,197,94,.25);
-  transform: translateZ(0);
 }
 .stampText{
   font-size:18px;
   font-weight:1000;
-  color:#15803d;
+  color:var(--green);
   letter-spacing:.2px;
 }
 
-/* ✅ 中文提示：加大、顏色清楚 */
+/* zh hint */
 .zh{
   margin-top:12px;
-  font-size:22px;
-  font-weight:800;
+  font-size:20px;
+  font-weight:1000;
   line-height:1.75;
-  color:#1e3a8a;
-  background:#eef4ff;
-  border:2px solid #c7d7ff;
-  border-radius:16px;
+  color:#14532d;
+  background: linear-gradient(180deg,#f0fdf4,#ffffff);
+  border:2px solid rgba(34,197,94,.35);
+  border-radius:18px;
   padding:14px 16px;
   display:none;
+  box-shadow:0 12px 26px rgba(21,128,61,.10);
 }
 
+/* tools */
 .toolsRow{
-  display:flex; justify-content:flex-end;
+  display:flex;
+  justify-content:flex-end;
   margin-top:10px;
 }
 .tbtn{
   border:1px solid var(--border);
-  background:#fff;
-  padding:8px 12px;
+  background:rgba(255,255,255,.9);
+  padding:9px 12px;
   border-radius:999px;
   font-size:13px;
   color:var(--sub);
   cursor:pointer;
+  font-weight:1000;
+  transition: .12s transform, .12s box-shadow;
+}
+.tbtn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 18px rgba(31,41,55,.10);
 }
 
+/* answer buttons */
 .btns{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -161,36 +379,42 @@ body{
 }
 .btn{
   height:var(--tap);
-  border-radius:16px;
+  border-radius:18px;
   border:1.5px solid var(--border);
-  background:#fff;
+  background: linear-gradient(180deg,#ffffff,#fffdf7);
   font-size:18px;
-  font-weight:900;
+  font-weight:1000;
   cursor:pointer;
   transition:.12s transform,.12s box-shadow,.12s border-color;
+  box-shadow: 0 10px 20px rgba(31,41,55,.06);
+  position:relative;
 }
-.btn:active{transform:scale(.98)}
+.btn:hover{ transform: translateY(-1px); }
+.btn:active{transform:scale(.985)}
+
 .btn.correct{
-  background:var(--greenSoft);
-  border-color:var(--green);
-  color:var(--green);
-  box-shadow:0 0 0 4px rgba(22,163,74,.16) inset, 0 10px 22px rgba(22,163,74,.10);
+  background: linear-gradient(180deg,#ecfdf5,#ffffff);
+  border-color: rgba(22,163,74,.95);
+  color: var(--green);
+  box-shadow: 0 0 0 4px rgba(22,163,74,.16) inset, 0 14px 24px rgba(22,163,74,.10);
 }
 .btn.wrong{
-  background:var(--redSoft);
-  border-color:var(--red);
-  color:var(--red);
-  box-shadow:0 0 0 4px rgba(220,38,38,.12) inset;
+  background: linear-gradient(180deg,#fef2f2,#ffffff);
+  border-color: rgba(220,38,38,.9);
+  color: var(--red);
+  box-shadow: 0 0 0 4px rgba(220,38,38,.12) inset;
 }
-.btn[disabled]{cursor:not-allowed; opacity:.92}
+.btn[disabled]{cursor:not-allowed; opacity:.94}
 
+/* feedback */
 .feedback{
   margin-top:12px;
-  padding:12px;
-  border-radius:16px;
+  padding:12px 12px;
+  border-radius:18px;
   background:#fff;
   display:none;
   border:1px solid var(--border);
+  box-shadow: 0 10px 22px rgba(31,41,55,.06);
 }
 .feedback.good{
   border-color: rgba(34,197,94,.35);
@@ -203,24 +427,30 @@ body{
 .fbTitle{font-size:16px;font-weight:1000;margin:0 0 6px}
 .full{font-size:16px; line-height:1.55}
 
+/* Next */
 .nav{
   margin-top:14px;
-  display:flex; justify-content:flex-end;
+  display:flex;
+  justify-content:flex-end;
 }
 .next{
-  height:48px;
-  padding:0 16px;
+  height:50px;
+  padding:0 18px;
   border:none;
-  border-radius:14px;
-  background:var(--blue);
+  border-radius:16px;
+  background: linear-gradient(135deg, var(--red), var(--green));
   color:#fff;
   font-size:15px;
-  font-weight:900;
+  font-weight:1000;
   cursor:pointer;
+  box-shadow: 0 14px 28px rgba(209,43,43,.18);
+  transition:.12s transform,.12s box-shadow,.12s filter;
 }
-.next:disabled{opacity:.4}
+.next:hover{transform: translateY(-1px)}
+.next:active{transform: translateY(0) scale(.99)}
+.next:disabled{opacity:.42; filter:saturate(.7); box-shadow:none}
 
-/* ✅ 完成提示（全題做完） */
+/* done overlay */
 .doneOverlay{
   position:fixed;
   inset:0;
@@ -229,21 +459,32 @@ body{
   justify-content:center;
   padding:18px;
   background:rgba(15,23,42,.45);
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(4px);
   z-index:9999;
 }
 .doneOverlay.show{display:flex}
 .doneCard{
-  width:min(520px, 100%);
-  background:#fff;
+  width:min(560px, 100%);
+  background: rgba(255,255,255,.93);
   border:1px solid var(--border);
-  border-radius:22px;
-  box-shadow:0 22px 60px rgba(2,6,23,.20);
+  border-radius:24px;
+  box-shadow:0 26px 70px rgba(2,6,23,.22);
   padding:18px 16px 16px;
+  position:relative;
+  overflow:hidden;
+  animation: pop .32s ease-out;
+}
+.doneCard::before{
+  content:"";
+  position:absolute;
+  inset:-70px -70px auto auto;
+  width:250px;height:250px;
+  background: radial-gradient(circle at 30% 30%, rgba(199,154,43,.20), transparent 62%);
+  transform: rotate(15deg);
 }
 .doneTitle{
   margin:0 0 6px;
-  font-size:20px;
+  font-size:22px;
   font-weight:1000;
 }
 .doneText{
@@ -259,30 +500,49 @@ body{
   gap:10px;
 }
 .doneBtn{
-  height:44px;
+  height:46px;
   padding:0 14px;
-  border-radius:14px;
+  border-radius:16px;
   border:1px solid var(--border);
   background:#fff;
   cursor:pointer;
-  font-weight:900;
+  font-weight:1000;
+  transition:.12s transform,.12s box-shadow;
 }
+.doneBtn:hover{transform: translateY(-1px); box-shadow:0 12px 20px rgba(31,41,55,.10)}
 .doneBtn.primary{
   border:none;
-  background:var(--blue);
+  background: linear-gradient(135deg, var(--red), var(--green));
   color:#fff;
+  box-shadow:0 14px 26px rgba(209,43,43,.18);
+}
+
+/* mobile */
+@media (max-width:420px){
+  :root{ --tap:64px; }
+  .title h1{font-size:19px}
+  .qText{font-size:18px}
+  .sentence{font-size:20px}
+  .btn{font-size:18px}
+  .zh{font-size:20px}
 }
 </style>
 </head>
 
 <body>
+<div class="snow" aria-hidden="true"></div>
+
 <div class="app">
   <div class="top">
     <div class="title">
-      <h1>TalkBetter｜Conjunction Practice</h1>
-      <p>選 because / and / but，答完會顯示中文</p>
+      <h1>Conjunction Practice</h1>
+      <p>🎁 選 because/and/but（聖誕版）</p>
     </div>
-    <div class="pill" id="progressPill">1 / 40</div>
+
+    <div class="pillWrap">
+      <div class="pill" id="progressPill">1 / 40</div>
+      <div class="miniBar"><i id="miniFill"></i></div>
+    </div>
   </div>
 
   <div class="card">
@@ -297,7 +557,6 @@ body{
 
     <div class="sentence" id="sentenceBox"></div>
 
-    <!-- ✅ 答對打勾更明顯 -->
     <div class="stamp" id="stamp">
       <div class="check">✓</div>
       <div class="stampText" id="stampText">答對！太棒了！</div>
@@ -321,10 +580,9 @@ body{
   </div>
 </div>
 
-<!-- ✅ 完成提示 -->
 <div class="doneOverlay" id="doneOverlay">
   <div class="doneCard">
-    <h2 class="doneTitle">🎉 全部完成！</h2>
+    <h2 class="doneTitle">🎉 全部完成！Merry Christmas!</h2>
     <p class="doneText" id="doneText">你已完成本次練習。要再來一輪嗎？（重新開始會重新洗牌）</p>
     <div class="doneBtns">
       <button class="doneBtn" id="closeDoneBtn">關閉</button>
@@ -335,6 +593,12 @@ body{
 
 <script src="./data.js"></script>
 <script>
+/* GA 基本初始化 */
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-WFQQ172YYK');
+
 const CHOICES=["because","and","but"];
 const DATA=[...(window.TALKBetter_DATA||[])];
 
@@ -347,8 +611,11 @@ function shuffle(a){
 shuffle(DATA);
 
 let idx=0;
+let done=false;
 
 const pill=document.getElementById("progressPill");
+const miniFill=document.getElementById("miniFill");
+
 const qNo=document.getElementById("qNo");
 const qText=document.getElementById("qText");
 const sentenceBox=document.getElementById("sentenceBox");
@@ -368,19 +635,35 @@ const closeDoneBtn=document.getElementById("closeDoneBtn");
 const restartBtn=document.getElementById("restartBtn");
 const doneText=document.getElementById("doneText");
 
+function restartQuiz(doShuffle=true){
+  done=false;
+  if(doShuffle) shuffle(DATA);
+  idx=0;
+
+  nextBtn.textContent="Next ▶";
+  nextBtn.disabled=true;
+
+  doneOverlay.classList.remove("show");
+
+  render();
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
 function render(){
   const d=DATA[idx];
 
   pill.textContent=`${idx+1} / ${DATA.length}`;
+  miniFill.style.width = `${Math.round(((idx+1)/DATA.length)*100)}%`;
+
   qNo.textContent=`Question ${idx+1}`;
   qText.textContent=d.q || "";
 
   sentenceBox.className="sentence";
   sentenceBox.innerHTML=`${escapeHtml(d.prefix)} <span class="blank">____</span> ${escapeHtml(d.suffix)}`;
 
-  // reset
   stamp.classList.remove("show");
   stampText.textContent="答對！太棒了！";
+
   zhBox.style.display="none";
   zhBox.textContent=d.zh || "";
   toggleZhBtn.textContent="顯示中文";
@@ -422,16 +705,20 @@ function choose(c){
     if(b.textContent===c && !ok) b.classList.add("wrong");
   });
 
-  // ✅ 作答後：中文直接顯示
   showChinese();
 
-  // ✅ 答對打勾更明顯
   if(ok){
     stamp.classList.add("show");
-    stampText.textContent="✅ 答對！太棒了！";
+    stampText.textContent="✅ 答對！Merry Christmas!";
+
+    if (navigator.vibrate) navigator.vibrate(35);
+
+    sentenceBox.animate(
+      [{transform:"scale(1)"},{transform:"scale(1.02)"},{transform:"scale(1)"}],
+      {duration:220, easing:"ease-out"}
+    );
   }
 
-  // 回饋
   feedback.style.display="block";
   if(ok){
     feedback.classList.add("good");
@@ -446,17 +733,24 @@ function choose(c){
   fullSentence.textContent=`${d.prefix} ${d.correct} ${d.suffix}`;
   nextBtn.disabled=false;
 
-  // 手機：讓孩子立刻看到中文/回饋
   setTimeout(()=>feedback.scrollIntoView({behavior:"smooth", block:"nearest"}), 60);
 }
 
 nextBtn.onclick=()=>{
+  if(done){
+    restartQuiz(true);
+    return;
+  }
+
   idx++;
   if(idx>=DATA.length){
-    // ✅ 完成提示（不再用 alert）
-    doneText.textContent = `你已完成本次練習（共 ${DATA.length} 題）。要再來一輪嗎？`;
+    done=true;
+
+    nextBtn.textContent="再練一次 ↻";
+    nextBtn.disabled=false;
+
+    doneText.textContent = `你已完成本次練習（共 ${DATA.length} 題）。祝你聖誕快樂！要再來一輪嗎？`;
     doneOverlay.classList.add("show");
-    nextBtn.disabled = true;
     return;
   }
   render();
@@ -464,14 +758,13 @@ nextBtn.onclick=()=>{
 
 closeDoneBtn.onclick=()=>{
   doneOverlay.classList.remove("show");
-  // 留在完成畫面，不強制重來
+  done=true;
+  nextBtn.textContent="再練一次 ↻";
+  nextBtn.disabled=false;
 };
 
 restartBtn.onclick=()=>{
-  doneOverlay.classList.remove("show");
-  shuffle(DATA);
-  idx=0;
-  render();
+  restartQuiz(true);
 };
 
 function escapeHtml(s){
