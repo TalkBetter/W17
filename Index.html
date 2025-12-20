@@ -1,0 +1,252 @@
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "28a5f7c0617a4f8aab97e95c1ea3e1b7"}'></script><!-- End Cloudflare Web Analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WFQQ172YYK"></script>
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>TalkBetter｜W16｜Monday & Tuesday</title>
+<style>
+:root{
+  --bg:#f6f7ff;
+  --card:#ffffff;
+  --border:#e5e7f5;
+  --text:#1f2937;
+  --sub:#6b7280;
+  --blue:#4a6fdc;
+  --blueSoft:#eef2ff;
+  --orange:#ea580c;
+  --orangeSoft:#fff3e6;
+  --greenSoft:#ecfdf5;
+  --shadow:0 10px 24px rgba(0,0,0,.08);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; padding:20px;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft JhengHei",sans-serif;
+  background:var(--bg); color:var(--text);
+  font-size:22px; line-height:1.8;
+}
+.container{max-width:980px; margin:0 auto}
+header{margin-bottom:16px}
+h1{margin:0; font-size:30px}
+.subtitle{color:var(--sub); margin-top:6px}
+
+/* ===== Tabs ===== */
+.tabs{display:flex; gap:16px; margin:18px 0}
+.tab{
+  flex:1;
+  text-align:center;
+  padding:16px 0;
+  border-radius:16px;
+  border:3px solid var(--border);
+  background:#fff;
+  font-weight:900;
+  font-size:22px;
+  cursor:pointer;
+}
+.tab.active{background:var(--blue); color:#fff; border-color:var(--blue)}
+.tab.orange.active{background:var(--orange); border-color:var(--orange)}
+
+.panel{display:none}
+.panel.active{display:block}
+
+/* ===== Cards ===== */
+.grid{display:grid; grid-template-columns:1fr; gap:14px}
+@media(min-width:860px){.grid{grid-template-columns:1fr 1fr}}
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  padding:16px 18px;
+}
+.card h2{margin:0 0 8px; font-size:26px}
+.zh{color:var(--sub)}
+.example{background:var(--blueSoft); border-radius:14px; padding:12px 14px; margin-top:8px}
+.example .en{font-weight:900}
+
+.audioRow{display:flex; align-items:center; gap:12px; margin-top:12px}
+.playBtn{
+  padding:10px 16px;
+  border-radius:14px;
+  border:2px solid var(--border);
+  background:#fff;
+  font-size:20px;
+  font-weight:900;
+  cursor:pointer;
+}
+.playBtn.green{background:var(--greenSoft)}
+.playBtn.orange{background:var(--orangeSoft)}
+
+.note{margin-top:18px; padding:14px 16px; border-radius:14px; border:2px dashed var(--border); background:#fff}
+.link{font-weight:900; color:var(--blue)}
+
+footer{margin-top:22px; text-align:center; color:var(--sub); font-size:14px}
+
+@media print{
+  body{background:#fff}
+  .tabs,footer{display:none}
+  .card{box-shadow:none}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>W16｜教學小卡</h1>
+  <div class="subtitle">週一 Healthy Habits｜週二 Phonics oi / oy（含 MP3）</div>
+</header>
+
+<div class="tabs">
+  <div class="tab active" data-tab="mon">🟦 週一 Monday</div>
+  <div class="tab orange" data-tab="tue">🟧 週二 Tuesday（oi / oy）</div>
+</div>
+
+<!-- ================= Monday ================= -->
+<section class="panel active" id="panel-mon">
+  <div class="grid">
+
+    <div class="card">
+      <h2>🪥 Brush teeth</h2>
+      <div class="zh">刷牙</div>
+      <div class="example"><div class="en">I brush my teeth every day.</div></div>
+      <div class="audioRow">
+        <button class="playBtn green" onclick="playAudio('m1')">▶ 播放</button>
+        <audio id="m1" src="Mon_brush_teeth.mp3"></audio>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🍽️ Eat meals</h2>
+      <div class="zh">吃飯</div>
+      <div class="example"><div class="en">I eat my meals on time.</div></div>
+      <div class="audioRow">
+        <button class="playBtn green" onclick="playAudio('m2')">▶ 播放</button>
+        <audio id="m2" src="Mon_eat_meals.mp3"></audio>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>⚽ Play / exercise</h2>
+      <div class="zh">玩球、運動</div>
+      <div class="example"><div class="en">I play and exercise every day.</div></div>
+      <div class="audioRow">
+        <button class="playBtn green" onclick="playAudio('m3')">▶ 播放</button>
+        <audio id="m3" src="Mon_play_exercise.mp3"></audio>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>💻 Study / use a computer</h2>
+      <div class="zh">學習、用電腦</div>
+      <div class="example"><div class="en">I study and use a computer.</div></div>
+      <div class="audioRow">
+        <button class="playBtn green" onclick="playAudio('m4')">▶ 播放</button>
+        <audio id="m4" src="Mon_study_computer.mp3"></audio>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>📚 Read books</h2>
+      <div class="zh">看書</div>
+      <div class="example"><div class="en">I read books every day.</div></div>
+      <div class="audioRow">
+        <button class="playBtn green" onclick="playAudio('m5')">▶ 播放</button>
+        <audio id="m5" src="Mon_read_books.mp3"></audio>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🧸 Play with toys</h2>
+      <div class="zh">玩玩具</div>
+      <div class="example"><div class="en">I play with my toys.</div></div>
+      <div class="audioRow">
+        <button class="playBtn green" onclick="playAudio('m6')">▶ 播放</button>
+        <audio id="m6" src="Mon_play_toys.mp3"></audio>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>😴 Sleep</h2>
+      <div class="zh">睡覺</div>
+      <div class="example"><div class="en">I go to bed early.</div></div>
+      <div class="audioRow">
+        <button class="playBtn green" onclick="playAudio('m7')">▶ 播放</button>
+        <audio id="m7" src="Mon_sleep_early.mp3"></audio>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🤗 Spend time with family / pets</h2>
+      <div class="zh">陪家人或寵物</div>
+      <div class="example"><div class="en">I spend time with my family.</div></div>
+      <div class="audioRow">
+        <button class="playBtn green" onclick="playAudio('m8')">▶ 播放</button>
+        <audio id="m8" src="Mon_family_pets.mp3"></audio>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= Tuesday ================= -->
+<section class="panel" id="panel-tue">
+
+  <div class="card">
+    <h2>Phonics：oi / oy</h2>
+    <div class="zh">oi 在字中間｜oy 在字尾｜發音 /ɔɪ/（喔ㄧ）</div>
+  </div>
+  <div class="note">
+    🔗 單字發音請參考14周 週四 oi & oy
+    <a class="link" href="https://talkbetter.github.io/W14/" target="_blank">https://talkbetter.github.io/W14/</a>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <div class="example">
+      <div class="en">1. She <b>boils</b> noodles in a pot.</div>
+      <div class="audioRow"><button class="playBtn orange" onclick="playAudio('t1')">▶ 播放</button><audio id="t1" src="Tues_oi_oy_01.mp3"></audio></div>
+    </div>
+    <div class="example" style="margin-top:12px">
+      <div class="en">2. The <b>boys</b> are playing in the park.</div>
+      <div class="audioRow"><button class="playBtn orange" onclick="playAudio('t2')">▶ 播放</button><audio id="t2" src="Tues_oi_oy_02.mp3"></audio></div>
+    </div>
+    <div class="example" style="margin-top:12px">
+      <div class="en">3. I went to buy a red <b>toy</b>.</div>
+      <div class="audioRow"><button class="playBtn orange" onclick="playAudio('t3')">▶ 播放</button><audio id="t3" src="Tues_oi_oy_03.mp3"></audio></div>
+    </div>
+    <div class="example" style="margin-top:12px">
+      <div class="en">4. Look at that <b>coin</b>.</div>
+      <div class="audioRow"><button class="playBtn orange" onclick="playAudio('t4')">▶ 播放</button><audio id="t4" src="Tues_oi_oy_04.mp3"></audio></div>
+    </div>
+  </div>
+
+
+</section>
+
+
+
+</div>
+
+<script>
+function stopAll(except){document.querySelectorAll('audio').forEach(a=>{if(a.id!==except){a.pause();a.currentTime=0;}})}
+function playAudio(id){const a=document.getElementById(id);if(!a)return;stopAll(id);a.play();}
+
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    if(tab.classList.contains('orange')) tab.classList.add('active');
+    const key=tab.dataset.tab;
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    document.getElementById('panel-'+key).classList.add('active');
+    stopAll(null);
+  });
+});
+</script>
+
+</body>
+</html>
