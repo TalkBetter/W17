@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>Weeks 10–16 Grammar & Social Conventions</title>
+
+<style>
+  :root{
+    --bg1:#fff7fb;
+    --bg2:#f1fffb;
+
+    --card:#ffffff;
+    --border:#e9e7ff;
+
+    --text:#1f2937;
+    --sub:#6b7280;
+
+    --blue:#3b82f6;   --blueSoft:#eef6ff;
+    --green:#22c55e;  --greenSoft:#ecfdf5;
+    --orange:#fb923c; --orangeSoft:#fff7ed;
+    --pink:#f472b6;   --pinkSoft:#fff1f7;
+    --purple:#8b5cf6; --purpleSoft:#f3e8ff;
+
+    --shadow:0 14px 34px rgba(31,41,55,.10);
+    --r:22px;
+    --tap:54px;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    padding:16px 12px 38px;
+    font-family: system-ui,-apple-system,"Segoe UI","Noto Sans TC","Microsoft JhengHei",sans-serif;
+    color:var(--text);
+    background:
+      radial-gradient(900px 420px at 12% 0%, rgba(244,114,182,.18), transparent 60%),
+      radial-gradient(900px 420px at 88% 0%, rgba(59,130,246,.16), transparent 60%),
+      radial-gradient(900px 420px at 50% 20%, rgba(34,197,94,.12), transparent 62%),
+      linear-gradient(180deg, var(--bg1), var(--bg2));
+  }
+
+  .wrap{max-width:980px;margin:0 auto}
+  header{
+    background:rgba(255,255,255,.92);
+    border:2px solid rgba(139,92,246,.18);
+    border-radius:28px;
+    padding:16px 14px 14px;
+    box-shadow:var(--shadow);
+  }
+  .titleRow{
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+    justify-content:space-between;
+  }
+  .leftTitle{
+    display:flex; align-items:center; gap:10px; flex-wrap:wrap;
+  }
+  h1{margin:0;font-size:20px;letter-spacing:.2px}
+  .badge{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:12px; font-weight:900;
+    padding:6px 10px;
+    border-radius:999px;
+    background:var(--purpleSoft);
+    border:2px solid rgba(139,92,246,.18);
+    color:var(--purple);
+    user-select:none;
+  }
+  .hint{
+    margin:10px 0 0;
+    color:var(--sub);
+    font-size:13px;
+    line-height:1.55;
+  }
+
+  /* ===== PDF buttons ===== */
+  .pdfRow{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:12px;
+  }
+  .pdfBtn{
+    flex:1 1 220px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    min-height:52px;
+    padding:12px 14px;
+    border-radius:18px;
+    text-decoration:none;
+    font-weight:900;
+    letter-spacing:.2px;
+    border:2px solid rgba(0,0,0,.08);
+    box-shadow:0 10px 22px rgba(31,41,55,.10);
+    transform: translateY(0);
+    transition: transform .12s ease, filter .12s ease;
+    user-select:none;
+  }
+  .pdfBtn:active{transform: translateY(1px); filter: brightness(.98);}
+  .pdfBlank{
+    background: linear-gradient(90deg, rgba(59,130,246,.18), rgba(34,197,94,.12));
+    border-color: rgba(59,130,246,.22);
+    color:#0f172a;
+  }
+  .pdfAns{
+    background: linear-gradient(90deg, rgba(244,114,182,.18), rgba(251,146,60,.14));
+    border-color: rgba(244,114,182,.22);
+    color:#0f172a;
+  }
+  .pdfSmall{
+    display:block;
+    font-size:12px;
+    font-weight:800;
+    color:rgba(107,114,128,.75);
+    margin-top:4px;
+    letter-spacing:0;
+    text-align:center;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap:12px;
+    margin-top:12px;
+  }
+
+  .card{
+    grid-column: span 12;
+    background:rgba(255,255,255,.94);
+    border:2px solid rgba(233,231,255,.95);
+    border-radius:28px;
+    padding:14px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    position:relative;
+  }
+  @media (min-width: 860px){
+    .card{grid-column: span 6;}
+    h1{font-size:22px}
+    header{padding:18px 18px 16px;}
+  }
+
+  .weekTop{
+    display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
+    margin-bottom:10px;
+  }
+  .weekTitle{
+    font-weight:900;
+    font-size:16px;
+    line-height:1.25;
+  }
+  .wtag{
+    flex:0 0 auto;
+    min-height:40px;
+    padding:8px 12px;
+    border-radius:999px;
+    border:2px solid rgba(59,130,246,.18);
+    background:var(--blueSoft);
+    color:var(--blue);
+    font-weight:900;
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  .bubbleRow{
+    display:flex; gap:8px; flex-wrap:wrap;
+    margin:8px 0 2px;
+  }
+  .bubble{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:12px; font-weight:900;
+    padding:6px 10px;
+    border-radius:999px;
+    border:2px solid rgba(0,0,0,.06);
+    background:rgba(255,255,255,.75);
+    user-select:none;
+  }
+
+  .section{
+    border-radius:20px;
+    border:2px dashed rgba(0,0,0,.08);
+    padding:12px 12px 10px;
+    background:#fff;
+    margin-top:10px;
+  }
+
+  .secHead{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    margin-bottom:8px;
+  }
+  .secHead h3{
+    margin:0;
+    font-size:14px;
+    font-weight:900;
+    display:flex; align-items:center; gap:8px;
+  }
+  .secHint{
+    font-size:12px;
+    color:rgba(107,114,128,.75);
+    font-weight:800;
+    white-space:nowrap;
+  }
+
+  .list{
+    margin:8px 0 0 18px;
+    padding:0;
+  }
+  .list li{
+    margin:6px 0;
+    font-size:15px;
+    line-height:1.5;
+  }
+
+  .box{
+    margin-top:10px;
+    border-radius:20px;
+    padding:12px;
+    border:2px solid rgba(0,0,0,.06);
+    background:linear-gradient(180deg, rgba(255,255,255,.8), rgba(255,255,255,.95));
+  }
+
+  .label{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-size:12px;
+    font-weight:900;
+    padding:6px 10px;
+    border-radius:999px;
+    border:2px solid rgba(0,0,0,.06);
+    user-select:none;
+  }
+  .label.ex{background:var(--greenSoft); color:var(--green); border-color:rgba(34,197,94,.2)}
+  .label.sc{background:var(--orangeSoft); color:#c2410c; border-color:rgba(251,146,60,.22)}
+
+  .line{
+    display:flex; gap:10px; align-items:flex-start;
+    padding:10px 10px;
+    border-radius:16px;
+    border:2px solid rgba(233,231,255,.8);
+    background:rgba(238,246,255,.55);
+    margin-top:10px;
+  }
+  .en{
+    font-weight:900;
+    font-size:16px;
+    line-height:1.35;
+  }
+  .zh{
+    margin-left:auto;
+    color:rgba(107,114,128,.45);
+    font-size:12px;
+    white-space:nowrap;
+    padding-left:8px;
+  }
+
+  .qa{
+    margin:10px 0 0;
+    padding:0;
+    list-style:none;
+  }
+  .qa li{
+    margin:10px 0;
+    padding:10px 10px;
+    border-radius:18px;
+    border:2px solid rgba(251,146,60,.22);
+    background:rgba(255,247,237,.75);
+    font-size:15px;
+    line-height:1.45;
+  }
+  .qa .en{font-size:15px}
+  .tinyNote{
+    margin-top:10px;
+    padding:10px 12px;
+    border-radius:20px;
+    border:2px solid rgba(244,114,182,.2);
+    background:linear-gradient(90deg, rgba(244,114,182,.12), rgba(255,255,255,0));
+    color:rgba(31,41,55,.85);
+    font-weight:900;
+    font-size:13px;
+  }
+
+  .dots{
+    position:absolute; right:-10px; top:-10px;
+    width:90px; height:90px; border-radius:50%;
+    background:radial-gradient(circle at 30% 35%, rgba(59,130,246,.18), transparent 55%),
+               radial-gradient(circle at 70% 70%, rgba(34,197,94,.16), transparent 55%),
+               radial-gradient(circle at 50% 20%, rgba(244,114,182,.16), transparent 55%);
+    filter: blur(.2px);
+    pointer-events:none;
+  }
+</style>
+</head>
+
+<body>
+<div class="wrap">
+  <header>
+    <div class="titleRow">
+      <div class="leftTitle">
+        <h1>🐣 Weeks 10–16</h1>
+      
+      </div>
+    </div>
+
+    <!-- ✅ 兩顆現有 PDF 下載按鈕（請把 href 換成你的實際檔名/路徑） -->
+    <div class="pdfRow">
+      <a class="pdfBtn pdfBlank" href="./Blank_ZH_to_EN.pdf" download>
+        📄 下載周報例句中翻英(空白)
+      </a>
+      <a class="pdfBtn pdfAns" href="./Answer_ZH_to_EN.pdf" download>
+        ✅ 下載周報例句中翻英
+      </a>
+    </div>
+
+  </header>
+
+  <section class="grid">
+
+    <!-- Week 10 -->
+    <article class="card">
+      <div class="dots"></div>
+      <div class="weekTop">
+        <div class="weekTitle">🟦 Week 10｜Community Helpers（醫療人員）</div>
+        <div class="wtag">W10</div>
+      </div>
+
+      <div class="bubbleRow">
+        <span class="bubble">⏳ 過去式</span>
+        <span class="bubble">🩺 doctor / nurse</span>
+      </div>
+
+      <div class="section">
+        <div class="secHead">
+          <h3>📘 文法小提示</h3>
+          <div class="secHint">Grammar</div>
+        </div>
+        <ul class="list">
+          <li><b>Simple Past</b>：用來說「已經發生過」的事。</li>
+          <li>規則動詞：動詞後面加 <b>-ed</b></li>
+          <li>不規則：<b>said, saw, went, came, did</b></li>
+        </ul>
+
+        <div class="box">
+          <span class="label ex">📌 例句</span>
+          <div class="line">
+            <div class="en">Yesterday, I played soccer.</div>
+            <div class="zh">昨天我踢足球。</div>
+          </div>
+          <div class="line">
+            <div class="en">I went to the hospital.</div>
+            <div class="zh">我去了醫院。</div>
+          </div>
+        </div>
+
+        <div class="box">
+          <span class="label sc">💬 主題句型</span>
+          <ul class="qa">
+            <li><span class="en">Who is this community helper?</span> <span class="zh">這位是誰？</span></li>
+            <li><span class="en">This is a doctor. / This is a nurse.</span> <span class="zh">這是醫生/護士。</span></li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- Week 11 -->
+    <article class="card">
+      <div class="dots"></div>
+      <div class="weekTop">
+        <div class="weekTitle">🟦 Week 11｜Community Helpers（工具與工作）</div>
+        <div class="wtag">W11</div>
+      </div>
+
+      <div class="bubbleRow">
+        <span class="bubble">🔗 and</span>
+        <span class="bubble">↩️ but</span>
+        <span class="bubble">🧰 tools</span>
+      </div>
+
+      <div class="section">
+        <div class="secHead">
+          <h3>📘 文法小提示</h3>
+          <div class="secHint">Grammar</div>
+        </div>
+        <ul class="list">
+          <li><b>and</b>：再加一個資訊（我喜歡A <b>和</b> B）</li>
+          <li><b>but</b>：轉彎！不同想法（我喜歡A <b>但是</b> 不喜歡B）</li>
+        </ul>
+
+        <div class="box">
+          <span class="label ex">📌 例句</span>
+          <div class="line">
+            <div class="en">I like apples and bananas.</div>
+            <div class="zh">我喜歡蘋果和香蕉。</div>
+          </div>
+          <div class="line">
+            <div class="en">I like apples but I don’t like bananas.</div>
+            <div class="zh">我喜歡蘋果，但我不喜歡香蕉。</div>
+          </div>
+        </div>
+
+        <div class="box">
+          <span class="label sc">💬 主題句型</span>
+          <ul class="qa">
+            <li><span class="en">What does a ______ use?</span> <span class="zh">他/她用什麼？</span></li>
+            <li><span class="en">A ______ uses a ______.</span> <span class="zh">他/她使用＿＿。</span></li>
+            <li><span class="en">Example: A doctor uses a bandage.</span> <span class="zh">例：醫生用繃帶。</span></li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- Week 12 -->
+    <article class="card">
+      <div class="dots"></div>
+      <div class="weekTop">
+        <div class="weekTitle">🟦 Week 12｜Community Helpers（單元總複習）</div>
+        <div class="wtag">W12</div>
+      </div>
+
+      <div class="bubbleRow">
+        <span class="bubble">🧩 複習週</span>
+        <span class="bubble">❓ WH-questions</span>
+        <span class="bubble">👦 He / 👧 She</span>
+      </div>
+
+      <div class="section">
+        <div class="secHead">
+          <h3>📘 文法小提示</h3>
+          <div class="secHint">Grammar</div>
+        </div>
+        <ul class="list">
+          <li>這週是 <b>總複習</b>：沒有新文法～</li>
+          <li>WH 問句：<b>who / what / where / when / why</b></li>
+          <li>過去式、<b>and / but</b>、<b>He / She</b></li>
+        </ul>
+
+        <div class="box">
+          <span class="label sc">💬 主題句型</span>
+          <ul class="qa">
+            <li><span class="en">Who is this community helper?</span> <span class="zh">這位是誰？</span></li>
+            <li><span class="en">This is a teacher / doctor / nurse / firefighter.</span> <span class="zh">這是老師/醫生/護士/消防員。</span></li>
+            <li><span class="en">He is a chef. / She is a baker.</span> <span class="zh">他是廚師／她是麵包師。</span></li>
+            <li><span class="en">What does a ______ use?</span> <span class="zh">他/她用什麼？</span></li>
+            <li><span class="en">A ______ uses a ______.</span> <span class="zh">他/她使用＿＿。</span></li>
+          </ul>
+        </div>
+
+        <div class="tinyNote">🌟 小提醒：這週可以玩「配對」：helper ↔ tool（醫生↔繃帶）</div>
+      </div>
+    </article>
+
+    <!-- Week 13 -->
+    <article class="card">
+      <div class="dots"></div>
+      <div class="weekTop">
+        <div class="weekTitle">🟦 Week 13｜Healthy Habits（洗手）</div>
+        <div class="wtag">W13</div>
+      </div>
+
+      <div class="bubbleRow">
+        <span class="bubble">🧼 wash hands</span>
+        <span class="bubble">1️⃣ first</span>
+        <span class="bubble">⏳ past</span>
+      </div>
+
+      <div class="section">
+        <div class="secHead">
+          <h3>📘 文法小提示</h3>
+          <div class="secHint">Grammar</div>
+        </div>
+        <ul class="list">
+          <li>用過去式說故事：發生過的事。</li>
+          <li>加上順序字：<b>first</b> / <b>before</b></li>
+        </ul>
+
+        <div class="box">
+          <span class="label ex">📌 例句</span>
+          <div class="line">
+            <div class="en">First, I washed my hands.</div>
+            <div class="zh">首先，我洗了手。</div>
+          </div>
+        </div>
+
+        <div class="box">
+          <span class="label sc">💬 主題句型</span>
+          <ul class="qa">
+            <li><span class="en">Who is / are the character(s)?</span> <span class="zh">角色是誰？</span></li>
+            <li><span class="en">The characters are Tom and Bob.</span> <span class="zh">角色是Tom和Bob。</span></li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- Week 14 -->
+    <article class="card">
+      <div class="dots"></div>
+      <div class="weekTop">
+        <div class="weekTitle">🟦 Week 14｜Healthy Habits（刷牙）</div>
+        <div class="wtag">W14</div>
+      </div>
+
+      <div class="bubbleRow">
+        <span class="bubble">🦷 brush teeth</span>
+        <span class="bubble">💡 because</span>
+        <span class="bubble">🧠 reason</span>
+      </div>
+
+      <div class="section">
+        <div class="secHead">
+          <h3>📘 文法小提示</h3>
+          <div class="secHint">Grammar</div>
+        </div>
+        <ul class="list">
+          <li><b>because</b>：因為（用來說理由）</li>
+        </ul>
+
+        <div class="box">
+          <span class="label ex">📌 例句</span>
+          <div class="line">
+            <div class="en">I brush my teeth because they are dirty.</div>
+            <div class="zh">我刷牙，因為牙齒很髒。</div>
+          </div>
+        </div>
+
+        <div class="box">
+          <span class="label sc">💬 主題句型</span>
+          <ul class="qa">
+            <li><span class="en">Who is / are the character(s)?</span> <span class="zh">角色是誰？</span></li>
+            <li><span class="en">What is the setting?</span> <span class="zh">背景是什麼？</span></li>
+            <li><span class="en">Place: At the park</span> <span class="zh">地點：公園</span></li>
+            <li><span class="en">Time: In the morning</span> <span class="zh">時間：早上</span></li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- Week 15 -->
+    <article class="card">
+      <div class="dots"></div>
+      <div class="weekTop">
+        <div class="weekTitle">🟦 Week 15｜Healthy Eating（健康飲食）</div>
+        <div class="wtag">W15</div>
+      </div>
+
+      <div class="bubbleRow">
+        <span class="bubble">👆 these</span>
+        <span class="bubble">👉 those</span>
+        <span class="bubble">🍎 healthy</span>
+      </div>
+
+      <div class="section">
+        <div class="secHead">
+          <h3>📘 文法小提示</h3>
+          <div class="secHint">Grammar</div>
+        </div>
+        <ul class="list">
+          <li><b>these</b>：這些（近的、複數）</li>
+          <li><b>those</b>：那些（遠的、複數）</li>
+        </ul>
+
+        <div class="box">
+          <span class="label ex">📌 例句</span>
+          <div class="line">
+            <div class="en">These apples are healthy.</div>
+            <div class="zh">這些蘋果很健康。</div>
+          </div>
+          <div class="line">
+            <div class="en">Those snacks are unhealthy.</div>
+            <div class="zh">那些點心不健康。</div>
+          </div>
+        </div>
+
+        <div class="box">
+          <span class="label sc">💬 主題句型</span>
+          <ul class="qa">
+            <li><span class="en">What happened first? → First, ____.</span> <span class="zh">先發生什麼？</span></li>
+            <li><span class="en">What happened next? → Next, ____.</span> <span class="zh">接著呢？</span></li>
+            <li><span class="en">What happened last? → Last, ____.</span> <span class="zh">最後呢？</span></li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- Week 16 -->
+    <article class="card">
+      <div class="dots"></div>
+      <div class="weekTop">
+        <div class="weekTitle">🟦 Week 16｜Being Fit（運動與健康）</div>
+        <div class="wtag">W16</div>
+      </div>
+
+      <div class="bubbleRow">
+        <span class="bubble">📏 taller</span>
+        <span class="bubble">🏆 fastest</span>
+        <span class="bubble">💪 fit</span>
+      </div>
+
+      <div class="section">
+        <div class="secHead">
+          <h3>📘 文法小提示</h3>
+          <div class="secHint">Grammar</div>
+        </div>
+        <ul class="list">
+          <li><b>-er</b>：兩個人/物比一比（taller, faster）</li>
+          <li><b>-est</b>：很多個人/物比一比（fastest, tallest）</li>
+        </ul>
+
+        <div class="box">
+          <span class="label ex">📌 例句</span>
+          <div class="line">
+            <div class="en">He is taller than me.</div>
+            <div class="zh">他比我高。</div>
+          </div>
+          <div class="line">
+            <div class="en">She is the fastest.</div>
+            <div class="zh">她是最快的。</div>
+          </div>
+        </div>
+
+        <div class="box">
+          <span class="label sc">💬 主題句型</span>
+          <ul class="qa">
+            <li><span class="en">What was the problem / action in the story?</span> <span class="zh">問題/行動是什麼？</span></li>
+            <li><span class="en">Example: Bear’s tooth was loose.</span> <span class="zh">例：熊的牙齒鬆了。</span></li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+  </section>
+</div>
+</body>
+</html>
