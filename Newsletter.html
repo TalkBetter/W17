@@ -1,3 +1,8 @@
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "28a5f7c0617a4f8aab97e95c1ea3e1b7"}'></script><!-- End Cloudflare Web Analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WFQQ172YYK"></script>
+
+
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -56,16 +61,57 @@
     display:flex; align-items:center; gap:10px; flex-wrap:wrap;
   }
   h1{margin:0;font-size:20px;letter-spacing:.2px}
-  .badge{
-    display:inline-flex; align-items:center; gap:6px;
-    font-size:12px; font-weight:900;
-    padding:6px 10px;
-    border-radius:999px;
-    background:var(--purpleSoft);
-    border:2px solid rgba(139,92,246,.18);
-    color:var(--purple);
-    user-select:none;
+
+  /* ===== Newsletter Player ===== */
+  .playerRow{
+    display:flex;
+    gap:10px;
+    align-items:center;
+    flex-wrap:wrap;
+    margin:12px 0 6px;
   }
+.playBtn{
+  flex:1 1 260px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  min-height:52px;
+  padding:12px 14px;
+  border-radius:18px;
+  font-weight:900;
+  letter-spacing:.2px;
+
+  font-size:20px;   /* ⭐ 放大主文字（原本沒設定） */
+
+  border:2px solid rgba(0,0,0,.08);
+  background: linear-gradient(90deg, rgba(139,92,246,.18), rgba(59,130,246,.16));
+  border-color: rgba(139,92,246,.22);
+  color:#0f172a;
+  box-shadow:0 10px 22px rgba(31,41,55,.10);
+  cursor:pointer;
+  user-select:none;
+  transform: translateY(0);
+  transition: transform .12s ease, filter .12s ease;
+}
+
+  .playBtn:active{transform: translateY(1px); filter: brightness(.98);}
+  .playBtn .subtxt{
+    display:block;
+    font-size:12px;
+    font-weight:800;
+    color:rgba(107,114,128,.75);
+    margin-top:4px;
+    letter-spacing:0;
+    text-align:center;
+  }
+  .miniHint{
+    font-size:12px;
+    color:rgba(107,114,128,.78);
+    font-weight:800;
+    white-space:nowrap;
+  }
+
   .hint{
     margin:10px 0 0;
     color:var(--sub);
@@ -108,15 +154,6 @@
     background: linear-gradient(90deg, rgba(244,114,182,.18), rgba(251,146,60,.14));
     border-color: rgba(244,114,182,.22);
     color:#0f172a;
-  }
-  .pdfSmall{
-    display:block;
-    font-size:12px;
-    font-weight:800;
-    color:rgba(107,114,128,.75);
-    margin-top:4px;
-    letter-spacing:0;
-    text-align:center;
   }
 
   .grid{
@@ -299,9 +336,18 @@
     <div class="titleRow">
       <div class="leftTitle">
         <h1>🐣 Weeks 10–16</h1>
-      
       </div>
     </div>
+
+    <!-- ✅ 最上方：Newsletter.mp3 播放/暫停按鈕 -->
+    <div class="playerRow">
+      <button class="playBtn" id="newsletterBtn" type="button" aria-pressed="false">
+        ▶️ 播放例句mp3
+        <span class="subtxt" id="newsletterSub"></span>
+      </button>
+      <span class="miniHint" id="timeHint">00:00 / 00:00</span>
+    </div>
+    <audio id="newsletterAudio" preload="metadata" src="Newsletter.mp3"></audio>
 
     <!-- ✅ 兩顆現有 PDF 下載按鈕（請把 href 換成你的實際檔名/路徑） -->
     <div class="pdfRow">
@@ -312,7 +358,6 @@
         ✅ 下載周報例句中翻英
       </a>
     </div>
-
   </header>
 
   <section class="grid">
@@ -630,5 +675,64 @@
 
   </section>
 </div>
+
+<script>
+  // Newsletter.mp3 play/pause button
+  const audio = document.getElementById('newsletterAudio');
+  const btn = document.getElementById('newsletterBtn');
+  const sub = document.getElementById('newsletterSub');
+  const timeHint = document.getElementById('timeHint');
+
+  function fmt(sec){
+    if(!isFinite(sec)) return "00:00";
+    sec = Math.max(0, Math.floor(sec));
+    const m = String(Math.floor(sec/60)).padStart(2,'0');
+    const s = String(sec%60).padStart(2,'0');
+    return `${m}:${s}`;
+  }
+
+  function setBtnPlaying(isPlaying){
+    btn.setAttribute('aria-pressed', String(isPlaying));
+    btn.firstChild && (btn.firstChild.textContent = isPlaying ? "⏸️ 暫停例句" : "▶️ 播放例句mp3");
+    sub.textContent = isPlaying ? "" : "";
+  }
+
+  // Fix firstChild issue (text node). We'll set via innerHTML safely.
+  function setBtnLabel(isPlaying){
+    const label = isPlaying ? "⏸️ 暫停例句" : "▶️ 播放例句mp3";
+    btn.innerHTML = `${label}<span class="subtxt" id="newsletterSub"></span>`;
+    // re-bind sub element
+    const newSub = btn.querySelector('#newsletterSub');
+    newSub.textContent = isPlaying ? "" : "";
+  }
+
+  // Initialize label
+  setBtnLabel(false);
+
+  btn.addEventListener('click', async () => {
+    if(audio.paused){
+      try{
+        await audio.play();
+      }catch(e){
+        // Autoplay blocked or file missing
+        alert("無法播放：請確認 Newsletter.mp3 與本 HTML 在同一資料夾，且瀏覽器允許播放音訊。");
+      }
+    }else{
+      audio.pause();
+    }
+  });
+
+  audio.addEventListener('play', () => setBtnLabel(true));
+  audio.addEventListener('pause', () => setBtnLabel(false));
+  audio.addEventListener('ended', () => setBtnLabel(false));
+
+  audio.addEventListener('loadedmetadata', () => {
+    timeHint.textContent = `${fmt(0)} / ${fmt(audio.duration)}`;
+  });
+
+  audio.addEventListener('timeupdate', () => {
+    timeHint.textContent = `${fmt(audio.currentTime)} / ${fmt(audio.duration)}`;
+  });
+</script>
 </body>
 </html>
