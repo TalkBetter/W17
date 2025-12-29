@@ -1,6 +1,11 @@
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "28a5f7c0617a4f8aab97e95c1ea3e1b7"}'></script><!-- End Cloudflare Web Analytics -->
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+  data-cf-beacon='{"token":"28a5f7c0617a4f8aab97e95c1ea3e1b7"}'></script>
+<!-- End Cloudflare Web Analytics -->
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WFQQ172YYK"></script>
+
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
@@ -9,242 +14,133 @@
 <title>Find the Adjectives</title>
 
 <style>
-  :root{
-    --bg:#f6f7ff;
-    --card:#ffffff;
-    --green:#16a34a;
-    --greenSoft:#ecfdf5;
-    --red:#dc2626;
-    --redSoft:#fef2f2;
-    --border:#e5e7eb;
-    --shadow:0 12px 32px rgba(0,0,0,.1);
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0;
-    padding:22px 16px 48px;
-    font-family: system-ui,-apple-system,"Segoe UI","Noto Sans TC","Microsoft JhengHei",sans-serif;
-    background:var(--bg);
-    color:#1f2937;
-  }
-  .wrap{
-    max-width:920px;
-    margin:0 auto;
-    background:var(--card);
-    border-radius:22px;
-    padding:22px 20px;
-    box-shadow:var(--shadow);
-    position:relative;
-    overflow:hidden;
-  }
+:root{
+  --bg:#f6f7ff; --card:#fff;
+  --green:#16a34a; --greenSoft:#ecfdf5;
+  --red:#dc2626; --redSoft:#fef2f2;
+  --border:#e5e7eb;
+  --shadow:0 12px 32px rgba(0,0,0,.1);
+}
+*{box-sizing:border-box}
+body{
+  margin:0; padding:22px 16px 48px;
+  font-family: system-ui,-apple-system,"Segoe UI","Noto Sans TC","Microsoft JhengHei",sans-serif;
+  background:var(--bg); color:#1f2937;
+}
+.wrap{
+  max-width:920px; margin:0 auto;
+  background:var(--card);
+  border-radius:22px;
+  padding:22px 20px;
+  box-shadow:var(--shadow);
+  position:relative;
+}
+h1{margin:0 0 8px;font-size:24px;font-weight:900}
+.how{font-size:18px;margin-bottom:14px}
 
-  /* Header */
-  h1{margin:0 0 8px;font-size:24px;font-weight:900}
-  .how{font-size:18px;margin:0 0 14px;line-height:1.5}
+/* Progress */
+.progressRow{display:flex;gap:12px;align-items:center;margin-bottom:16px}
+.progressBar{
+  flex:1;height:14px;border-radius:999px;
+  background:#eef0ff;overflow:hidden;border:1px solid #e3e5ff
+}
+.progressFill{
+  height:100%;width:0%;
+  background:linear-gradient(90deg,rgba(22,163,74,.25),rgba(22,163,74,.85));
+  transition:width .25s ease
+}
+.progressText{font-weight:900;color:#6b7280}
 
-  /* Progress */
-  .progressRow{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    margin:8px 0 16px;
-  }
-  .progressBar{
-    flex:1;
-    height:14px;
-    border-radius:999px;
-    background:#eef0ff;
-    overflow:hidden;
-    border:1px solid #e3e5ff;
-  }
-  .progressFill{
-    height:100%;
-    width:0%;
-    border-radius:999px;
-    background:linear-gradient(90deg, rgba(22,163,74,.25), rgba(22,163,74,.85));
-    transition:width .25s ease;
-  }
-  .progressText{
-    font-weight:900;
-    color:#6b7280;
-    white-space:nowrap;
-  }
+/* Sentence */
+.sentence{
+  border:2px dashed #d7d9f7;border-radius:20px;
+  padding:18px;background:#fbfbff;min-height:130px;
+  position:relative
+}
+.tokens{display:flex;flex-wrap:wrap;gap:12px}
 
-  /* Sentence area */
-  .sentence{
-    border:2px dashed #d7d9f7;
-    border-radius:20px;
-    padding:18px;
-    background:#fbfbff;
-    position:relative;
-    min-height:132px;
-  }
-  .tokens{
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px;
-  }
+/* Words */
+.word{
+  border:3px solid var(--border);
+  background:#fff;border-radius:999px;
+  padding:12px 18px;font-size:22px;
+  cursor:pointer;min-height:54px;
+  box-shadow:0 8px 20px rgba(31,41,55,.08);
+  transition:.1s;user-select:none
+}
+.word:hover{transform:translateY(-1px)}
+.word:active{transform:scale(.97)}
+.punct{
+  border:none;background:transparent;
+  cursor:default;opacity:.5;
+  font-size:26px;padding:0 2px
+}
 
-  /* Word buttons */
-  .word{
-    border:3px solid var(--border);
-    background:#fff;
-    border-radius:999px;
-    padding:12px 18px;
-    font-size:22px;
-    cursor:pointer;
-    min-height:54px;
-    transition: transform .08s ease, box-shadow .12s ease, border-color .12s ease, background .12s ease;
-    box-shadow:0 8px 20px rgba(31,41,55,.08);
-    user-select:none;
-  }
-  .word:hover{transform:translateY(-1px)}
-  .word:active{transform:scale(.97)}
-  .punct{
-    cursor:default;
-    opacity:.55;
-    border:none;
-    box-shadow:none;
-    background:transparent;
-    padding:0 2px;
-    font-size:26px;
-    min-height:auto;
-  }
+/*圈選狀態*/
+.adj{
+  border-color:var(--green);
+  background:var(--greenSoft);
+  box-shadow:0 0 0 6px rgba(22,163,74,.18)
+}
+.notAdj{
+  border-color:var(--red);
+  background:var(--redSoft);
+  box-shadow:0 0 0 6px rgba(220,38,38,.14)
+}
 
-  /* Circle effect */
-  .adj{
-    border-color:var(--green);
-    background:var(--greenSoft);
-    box-shadow:0 0 0 6px rgba(22,163,74,.18);
-  }
-  .notAdj{
-    border-color:var(--red);
-    background:var(--redSoft);
-    box-shadow:0 0 0 6px rgba(220,38,38,.14);
-  }
+/* 大勾 */
+.bigCheck{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  pointer-events:none;opacity:0;transform:scale(.9);
+  transition:.18s
+}
+.bigCheck.show{opacity:1;transform:scale(1)}
+.bigCheck .badge{
+  width:260px;aspect-ratio:1/1;border-radius:50%;
+  background:rgba(22,163,74,.15);
+  border:6px solid rgba(22,163,74,.4);
+  display:flex;align-items:center;justify-content:center
+}
+.bigCheck span{font-size:150px;font-weight:900;color:var(--green)}
 
-  /* Big check for current question */
-  .bigCheck{
-    position:absolute;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    pointer-events:none;
-    opacity:0;
-    transform:scale(.9);
-    transition:.18s ease;
-  }
-  .bigCheck.show{opacity:1;transform:scale(1)}
-  .bigCheck .badge{
-    width:min(280px,68vw);
-    aspect-ratio:1/1;
-    border-radius:50%;
-    background:rgba(22,163,74,.15);
-    border:6px solid rgba(22,163,74,.4);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    box-shadow:0 22px 60px rgba(22,163,74,.18);
-    backdrop-filter: blur(2px);
-  }
-  .bigCheck span{
-    font-size:min(150px,36vw);
-    font-weight:900;
-    color:var(--green);
-    line-height:1;
-  }
+/* Controls */
+.controls{margin-top:16px;display:flex;justify-content:space-between;align-items:center}
+.btn{
+  height:56px;padding:0 22px;border-radius:18px;
+  border:2px solid var(--border);background:#fff;
+  font-size:18px;font-weight:900;cursor:pointer
+}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.meta{font-weight:900;color:#6b7280}
 
-  /* Controls */
-  .controls{
-    margin-top:16px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:10px;
-    flex-wrap:wrap;
-  }
-  .btn{
-    height:56px;
-    padding:0 22px;
-    border-radius:18px;
-    border:2px solid var(--border);
-    background:#fff;
-    font-size:18px;
-    font-weight:900;
-    cursor:pointer;
-  }
-  .meta{font-weight:900;color:#6b7280}
+/* Confetti */
+#confetti{
+  position:fixed;inset:0;
+  width:100vw;height:100vh;
+  pointer-events:none;z-index:9999;display:none
+}
 
-  /* Confetti canvas */
-  canvas#confetti{
-    position:fixed;
-    inset:0;
-    width:100vw;
-    height:100vh;
-    pointer-events:none;
-    z-index:9999;
-    display:none;
-  }
-
-  /* Final overlay */
-  .finishOverlay{
-    position:fixed;
-    inset:0;
-    background:rgba(17,24,39,.45);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    z-index:9998;
-    padding:18px;
-  }
-  .finishCard{
-    width:min(720px, 92vw);
-    background:#fff;
-    border-radius:26px;
-    padding:22px 18px;
-    box-shadow:0 22px 70px rgba(0,0,0,.25);
-    text-align:center;
-  }
-  .finishTitle{
-    margin:0;
-    font-size:26px;
-    font-weight:1000;
-  }
-  .finishSub{
-    margin:10px 0 18px;
-    font-size:18px;
-    color:#374151;
-  }
-  .finishCheck{
-    width:min(260px,70vw);
-    aspect-ratio:1/1;
-    border-radius:50%;
-    margin:12px auto 18px;
-    background:rgba(22,163,74,.14);
-    border:7px solid rgba(22,163,74,.42);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-  .finishCheck span{
-    font-size:min(160px,40vw);
-    color:var(--green);
-    font-weight:1000;
-    line-height:1;
-  }
-  .finishBtns{
-    display:flex;
-    gap:10px;
-    justify-content:center;
-    flex-wrap:wrap;
-  }
-
-  @media (max-width:600px){
-    h1{font-size:22px}
-    .how{font-size:17px}
-    .word{font-size:24px;padding:13px 18px}
-  }
+/* Finish overlay */
+.finishOverlay{
+  position:fixed;inset:0;
+  background:rgba(17,24,39,.45);
+  display:none;align-items:center;justify-content:center;
+  z-index:9998
+}
+.finishCard{
+  background:#fff;border-radius:26px;
+  padding:22px 18px;text-align:center;
+  box-shadow:0 22px 70px rgba(0,0,0,.25)
+}
+.finishCheck{
+  width:220px;aspect-ratio:1/1;border-radius:50%;
+  margin:12px auto;
+  background:rgba(22,163,74,.14);
+  border:7px solid rgba(22,163,74,.42);
+  display:flex;align-items:center;justify-content:center
+}
+.finishCheck span{font-size:140px;font-weight:900;color:var(--green)}
 </style>
 </head>
 
@@ -253,19 +149,15 @@
 
 <div class="finishOverlay" id="finishOverlay">
   <div class="finishCard">
-    <h2 class="finishTitle">🎉 全部完成！</h2>
-    <div class="finishSub">你把每一題的形容詞都圈對了！</div>
+    <h2>🎉 全部完成！</h2>
     <div class="finishCheck"><span>✓</span></div>
-    <div class="finishBtns">
-      <button class="btn" id="btnRestart">🔄 再玩一次</button>
-      <button class="btn" id="btnClose">✅ 關閉</button>
-    </div>
+    <button class="btn" onclick="location.reload()">🔄 再玩一次</button>
   </div>
 </div>
 
 <div class="wrap">
-  <h1>🔍 Find the adjectives in the sentence.</h1>
-  <div class="how">👉 找出句子中的形容詞 ， 點單字把 <b>形容詞圈起來</b>（每題全找到才算完成）</div>
+  <h1>🔍 Find the adjectives</h1>
+  <div class="how">點單字把 <b>形容詞圈起來</b>（全部對才可下一題）</div>
 
   <div class="progressRow">
     <div class="progressBar"><div class="progressFill" id="progressFill"></div></div>
@@ -280,260 +172,110 @@
   </div>
 
   <div class="controls">
-    <div class="meta">題目 <span id="qIndex">1</span> / <span id="qTotal">1</span></div>
-    <button class="btn" id="btnNext">➡️ 下一題</button>
+    <div class="meta">題目 <span id="qIndex">1</span>/<span id="qTotal">1</span></div>
+    <button class="btn" id="btnNext" disabled>➡️ 下一題</button>
   </div>
 </div>
 
-<!-- Load question bank -->
 <script src="data.js"></script>
-
 <script>
 let idx = 0;
-
-// 每題是否「完成（完全正確）」的紀錄
 const completed = [];
 
-const elTokens   = document.getElementById("tokens");
+const elTokens = document.getElementById("tokens");
 const elBigCheck = document.getElementById("bigCheck");
-const elQIndex   = document.getElementById("qIndex");
-const elQTotal   = document.getElementById("qTotal");
-
+const btnNext = document.getElementById("btnNext");
+const elProgressFill = document.getElementById("progressFill");
 const elDoneCount = document.getElementById("doneCount");
 const elTotalCount = document.getElementById("totalCount");
-const elProgressFill = document.getElementById("progressFill");
-
-const elConfetti = document.getElementById("confetti");
 const elFinishOverlay = document.getElementById("finishOverlay");
-const btnRestart = document.getElementById("btnRestart");
-const btnClose = document.getElementById("btnClose");
+const canvas = document.getElementById("confetti");
 
-function tokenize(s){
-  return s.match(/[A-Za-z]+(?:['-][A-Za-z]+)?|[^\sA-Za-z]/g) || [];
-}
-function norm(w){
-  return w.toLowerCase().replace(/^[^a-z]+|[^a-z]+$/g, "");
-}
-
-function updateProgress(){
-  const total = DATA.length;
-  const done = completed.filter(Boolean).length;
-
-  elTotalCount.textContent = total;
-  elDoneCount.textContent = done;
-
-  const pct = total === 0 ? 0 : Math.round((done / total) * 100);
-  elProgressFill.style.width = pct + "%";
-
-  // 全部完成 → 彩帶
-  if(total > 0 && done === total){
-    celebrate();
-  }
-}
+function tokenize(s){return s.match(/[A-Za-z]+|[^\sA-Za-z]/g)||[]}
+function norm(w){return w.toLowerCase()}
 
 function render(){
   const q = DATA[idx];
   elTokens.innerHTML = "";
   elBigCheck.classList.remove("show");
+  btnNext.disabled = true;
 
-  elQIndex.textContent = idx + 1;
-  elQTotal.textContent = DATA.length;
+  document.getElementById("qIndex").textContent = idx+1;
+  document.getElementById("qTotal").textContent = DATA.length;
+  elTotalCount.textContent = DATA.length;
 
   tokenize(q.sentence).forEach(t=>{
-    const isPunct = /^[^\w]+$/.test(t);
     const btn = document.createElement("button");
-
-    if(isPunct){
-      btn.textContent = t;
-      btn.className = "word punct";
-      btn.disabled = true;
+    if(/^[^\w]+$/.test(t)){
+      btn.textContent=t;btn.className="word punct";btn.disabled=true;
     }else{
-      btn.textContent = t;
-      btn.className = "word";
-      btn.dataset.word = norm(t);
-
-      btn.onclick = ()=>{
-        const w = btn.dataset.word;
-        const isAdj = q.adjectives.includes(w);
-
-        if(isAdj){
-          btn.classList.toggle("adj");
-          btn.classList.remove("notAdj");
-        }else{
-          btn.classList.toggle("notAdj");
-          btn.classList.remove("adj");
-        }
+      btn.textContent=t;btn.className="word";btn.dataset.word=norm(t);
+      btn.onclick=()=>{
+        const isAdj=q.adjectives.includes(btn.dataset.word);
+        btn.classList.toggle(isAdj?"adj":"notAdj");
+        if(isAdj) btn.classList.remove("notAdj");
+        else btn.classList.remove("adj");
         checkComplete();
-      };
+      }
     }
     elTokens.appendChild(btn);
   });
-
-  // 如果這題已完成，顯示大勾（但不自動套色，避免打擾）
-  checkComplete();
-  updateProgress();
 }
 
 function checkComplete(){
-  const q = DATA[idx];
+  const q=DATA[idx];
+  const picked=[...elTokens.querySelectorAll(".adj")].map(b=>b.dataset.word);
+  const hasWrong=elTokens.querySelectorAll(".notAdj").length>0;
+  const allPicked=q.adjectives.every(a=>picked.includes(a));
+  const perfect=allPicked && !hasWrong;
 
-  // 綠色圈到的單字（去重）
-  const pickedAdj = new Set(
-    [...elTokens.querySelectorAll(".word.adj")]
-      .map(b => b.dataset.word)
-  );
+  elBigCheck.classList.toggle("show",perfect);
+  btnNext.disabled=!perfect;
+  completed[idx]=perfect;
 
-  // 任何紅色存在 → 不算完全正確
-  const hasWrong = elTokens.querySelectorAll(".word.notAdj").length > 0;
+  const done=completed.filter(Boolean).length;
+  elDoneCount.textContent=done;
+  elProgressFill.style.width=Math.round(done/DATA.length*100)+"%";
 
-  // 必須把所有形容詞都圈到
-  const allAdjPicked = q.adjectives.every(a => pickedAdj.has(a));
-
-  const perfect = allAdjPicked && !hasWrong;
-
-  elBigCheck.classList.toggle("show", perfect);
-
-  // 更新完成狀態
-  completed[idx] = perfect;
-  updateProgress();
-}
-
-function next(){
-  idx = (idx + 1) % DATA.length;
-  render();
-}
-
-document.getElementById("btnNext").onclick = next;
-
-/* =========================
-   Confetti (Canvas)
-   ========================= */
-let confettiRunning = false;
-
-function celebrate(){
-  if(confettiRunning) return;
-  confettiRunning = true;
-
-  // show overlay + canvas
-  elFinishOverlay.style.display = "flex";
-  elConfetti.style.display = "block";
-
-  startConfetti(1800); // ms
-}
-
-btnRestart.onclick = () => {
-  // reset progress
-  for(let i=0;i<completed.length;i++) completed[i]=false;
-  idx = 0;
-  elFinishOverlay.style.display = "none";
-  stopConfetti();
-  render();
-};
-
-btnClose.onclick = () => {
-  elFinishOverlay.style.display = "none";
-  stopConfetti();
-};
-
-function startConfetti(durationMs){
-  const canvas = elConfetti;
-  const ctx = canvas.getContext("2d");
-  const DPR = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-
-  function resize(){
-    canvas.width = Math.floor(window.innerWidth * DPR);
-    canvas.height = Math.floor(window.innerHeight * DPR);
+  if(done===DATA.length){
+    elFinishOverlay.style.display="flex";
+    startConfetti();
   }
-  resize();
-  window.addEventListener("resize", resize);
+}
 
-  const W = () => canvas.width;
-  const H = () => canvas.height;
+btnNext.onclick=()=>{
+  if(btnNext.disabled) return;
+  idx++; if(idx>=DATA.length) idx=DATA.length-1;
+  render();
+};
 
-  const pieces = [];
-  const N = 260; // 數量
-  const gravity = 0.12 * DPR;
-
-  // 產生彩帶紙片
-  for(let i=0;i<N;i++){
-    pieces.push({
-      x: Math.random() * W(),
-      y: -Math.random() * H() * 0.3,
-      w: (6 + Math.random()*10) * DPR,
-      h: (8 + Math.random()*14) * DPR,
-      vx: (-2.2 + Math.random()*4.4) * DPR,
-      vy: (1.2 + Math.random()*2.6) * DPR,
-      rot: Math.random() * Math.PI,
-      vr: (-0.12 + Math.random()*0.24),
-      alpha: 0.85 + Math.random()*0.15
+/* ===== Confetti ===== */
+let raf=null;
+function startConfetti(){
+  const ctx=canvas.getContext("2d");
+  canvas.style.display="block";
+  canvas.width=innerWidth;canvas.height=innerHeight;
+  const pieces=Array.from({length:220},()=>({
+    x:Math.random()*canvas.width,
+    y:-20,
+    vx:(Math.random()*4-2),
+    vy:(Math.random()*3+2),
+    r:Math.random()*360
+  }));
+  function frame(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    pieces.forEach(p=>{
+      p.vy+=0.05;p.x+=p.vx;p.y+=p.vy;
+      ctx.fillStyle=`hsl(${p.r},90%,60%)`;
+      ctx.fillRect(p.x,p.y,6,6);
     });
+    raf=requestAnimationFrame(frame);
   }
-
-  // 不指定固定顏色（遵守規則）：用 HSL 隨機
-  function randColor(){
-    const h = Math.floor(Math.random()*360);
-    return `hsla(${h}, 90%, 55%, 0.95)`;
-  }
-  pieces.forEach(p => p.c = randColor());
-
-  let start = performance.now();
-  let rafId = 0;
-
-  function frame(t){
-    const elapsed = t - start;
-    ctx.clearRect(0,0,W(),H());
-
-    for(const p of pieces){
-      p.vy += gravity;
-      p.x += p.vx;
-      p.y += p.vy;
-      p.rot += p.vr;
-
-      // wrap
-      if(p.x < -40*DPR) p.x = W()+40*DPR;
-      if(p.x > W()+40*DPR) p.x = -40*DPR;
-
-      ctx.save();
-      ctx.globalAlpha = p.alpha;
-      ctx.translate(p.x, p.y);
-      ctx.rotate(p.rot);
-      ctx.fillStyle = p.c;
-      ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
-      ctx.restore();
-    }
-
-    if(elapsed < durationMs){
-      rafId = requestAnimationFrame(frame);
-    }else{
-      // 結束：慢慢收
-      setTimeout(()=>{
-        stopConfetti();
-        window.removeEventListener("resize", resize);
-      }, 300);
-    }
-  }
-  rafId = requestAnimationFrame(frame);
-
-  // store to stop later
-  canvas._confettiStop = () => {
-    cancelAnimationFrame(rafId);
-    ctx.clearRect(0,0,W(),H());
-    window.removeEventListener("resize", resize);
-  };
+  frame();
+  setTimeout(()=>{cancelAnimationFrame(raf);canvas.style.display="none"},1800);
 }
 
-function stopConfetti(){
-  if(elConfetti && elConfetti._confettiStop){
-    elConfetti._confettiStop();
-  }
-  elConfetti.style.display = "none";
-  confettiRunning = false;
-}
-
-/* init */
-for(let i=0;i<DATA.length;i++) completed[i] = false;
 render();
-updateProgress();
 </script>
 </body>
 </html>
