@@ -1,279 +1,303 @@
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "28a5f7c0617a4f8aab97e95c1ea3e1b7"}'></script><!-- End Cloudflare Web Analytics -->
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js'
+  data-cf-beacon='{"token": "28a5f7c0617a4f8aab97e95c1ea3e1b7"}'></script>
+<!-- End Cloudflare Web Analytics -->
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-WFQQ172YYK"></script>
+
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <title>Writing Answers｜First / Next / Then / Last</title>
+
 <style>
-  :root{
-    --bg:#f6f7ff; --card:#fff; --border:#e5e7f5;
-    --text:#1f2937; --sub:#6b7280;
-    --blue:#2563eb; --blueSoft:#eef2ff;
-    --shadow:0 14px 34px rgba(31,41,55,.10);
-    --r:18px;
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0; padding:18px 14px 40px;
-    font-family: system-ui,-apple-system,"Segoe UI","Noto Sans TC","Microsoft JhengHei",sans-serif;
-    background:var(--bg); color:var(--text); line-height:1.7;
-  }
-  .wrap{max-width:980px; margin:0 auto;}
+:root{
+  --bg:#f6f7ff; --card:#fff; --border:#e5e7f5;
+  --text:#1f2937; --sub:#6b7280;
+  --blue:#2563eb; --blueSoft:#eef2ff;
+  --shadow:0 14px 34px rgba(31,41,55,.10);
+  --r:18px;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; padding:18px 14px 40px;
+  font-family: system-ui,-apple-system,"Segoe UI","Noto Sans TC","Microsoft JhengHei",sans-serif;
+  background:var(--bg); color:var(--text); line-height:1.7;
+}
+.wrap{max-width:980px; margin:0 auto;}
 
-  header{
-    background:linear-gradient(135deg,var(--blueSoft),#fff);
-    border:1px solid var(--border);
-    border-radius:var(--r);
-    padding:18px;
-    box-shadow:var(--shadow);
-    margin-bottom:18px;
+header{
+  background:linear-gradient(135deg,var(--blueSoft),#fff);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  padding:18px;
+  box-shadow:var(--shadow);
+  margin-bottom:18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  flex-wrap:wrap;
+}
+h1{margin:0; font-size:22px;}
+.note{margin:6px 0 0; color:var(--sub); font-size:15px;}
 
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:14px;
-    flex-wrap:wrap;
-  }
-  h1{margin:0; font-size:22px;}
-  .note{margin:6px 0 0; color:var(--sub); font-size:15px;}
+.pdfBtn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:14px 20px;
+  border-radius:16px;
+  background:var(--blue);
+  color:#fff;
+  font-weight:900;
+  font-size:18px;
+  text-decoration:none;
+  box-shadow:0 12px 26px rgba(37,99,235,.35);
+  min-width:260px;
+}
+.pdfBtn:hover{transform:translateY(-1px); opacity:.95}
 
-  /* 明顯 PDF 下載按鈕 */
-  .pdfBtn{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    padding:14px 20px;
-    border-radius:16px;
-    background:var(--blue);
-    color:#fff;
-    font-weight:900;
-    font-size:18px;
-    text-decoration:none;
-    box-shadow:0 12px 26px rgba(37,99,235,.35);
-    min-width:260px;
-    justify-content:center;
-  }
-  .pdfBtn:hover{transform:translateY(-1px); opacity:.95}
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--r);
+  box-shadow:var(--shadow);
+  padding:16px;
+  margin-top:18px;
+}
+.top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+}
 
-  .card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:var(--r);
-    box-shadow:var(--shadow);
-    padding:16px;
-    margin-top:18px;
-  }
-  .top{
-    display:flex; align-items:center; justify-content:space-between; gap:12px;
-    flex-wrap:wrap;
-  }
-  .qtag{
-    font-weight:900;
-    background:var(--blueSoft);
-    color:var(--blue);
-    border:1px solid #dbe3ff;
-    padding:6px 12px;
-    border-radius:999px;
-    font-size:14px;
-  }
-  .badge{
-    font-size:13px;
-    color:var(--sub);
-    background:#f3f4f6;
-    border:1px solid #e5e7eb;
-    padding:6px 10px;
-    border-radius:999px;
-  }
-  .title{
-    margin:12px 0 2px;
-    font-size:20px;
-    font-weight:900;
-  }
-  .subtitleZh{
-    margin:0 0 10px;
-    font-size:16px;
-    font-weight:900;
-    color:#111827;
-  }
-  .flow{
-    margin:0 0 12px;
-    color:var(--sub);
-    font-size:15px;
-  }
-  .iconsRow{
-    width:100%;
-    border:2px dashed #cfd6ff;
-    background:#fbfbff;
-    border-radius:16px;
-    padding:12px;
-  }
-  .iconsRow img{
-    width:100%;
-    height:auto;
-    display:block;
-  }
-  .answers{
-    margin:14px 0 0;
-    padding:0;
-    list-style:none;
-  }
-  .answers li{
-    margin:10px 0;
-    padding:14px 16px;
-    border:1px solid var(--border);
-    border-radius:16px;
-    background:#fff;
-    font-size:20px; /* 答案字放大 */
-  }
-  .k{
-    display:inline-block;
-    min-width:74px;
-    font-weight:900;
-    color:var(--blue);
-  }
-  .sleepWrap{position:relative;}
-  .clockSticker{
-    position:absolute;
-    right:18px;
-    bottom:16px;
-    width:96px;
-    border-radius:14px;
-    box-shadow:0 10px 22px rgba(31,41,55,.18);
-    border:2px solid #fff;
-    background:#fff;
-  }
-  @media (max-width:520px){
-    .answers li{font-size:18px}
-    .pdfBtn{width:100%;}
-  }
+/* qtag 一般 */
+.qtag{
+  font-weight:900;
+  background:var(--blueSoft);
+  color:var(--blue);
+  border:1px solid #dbe3ff;
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:14px;
+}
+
+/* 🔴 紅筆重點框（只給 2 & 6） */
+.qtag--focus{
+  position:relative;
+  background:#fff;
+  color:#b91c1c;
+  border:3px solid #dc2626;
+  font-size:18px;
+  padding:8px 16px;
+  transform:rotate(-2deg);
+  box-shadow:
+    2px 2px 0 #dc2626,
+    -1px -1px 0 #dc2626;
+}
+.qtag--focus::after{
+  content:"";
+  position:absolute;
+  inset:-6px;
+  border:2px dashed #ef4444;
+  border-radius:999px;
+  transform:rotate(3deg);
+  pointer-events:none;
+}
+
+.badge{
+  font-size:13px;
+  color:var(--sub);
+  background:#f3f4f6;
+  border:1px solid #e5e7eb;
+  padding:6px 10px;
+  border-radius:999px;
+}
+
+.title{
+  margin:12px 0 2px;
+  font-size:20px;
+  font-weight:900;
+}
+.subtitleZh{
+  margin:0 0 10px;
+  font-size:16px;
+  font-weight:900;
+}
+.flow{
+  margin:0 0 12px;
+  color:var(--sub);
+}
+.iconsRow{
+  border:2px dashed #cfd6ff;
+  background:#fbfbff;
+  border-radius:16px;
+  padding:12px;
+}
+.iconsRow img{
+  width:100%;
+  display:block;
+}
+
+.answers{
+  margin:14px 0 0;
+  padding:0;
+  list-style:none;
+}
+.answers li{
+  margin:10px 0;
+  padding:14px 16px;
+  border:1px solid var(--border);
+  border-radius:16px;
+  background:#fff;
+  font-size:20px;
+}
+.k{
+  display:inline-block;
+  min-width:74px;
+  font-weight:900;
+  color:var(--blue);
+}
+
+@media (max-width:520px){
+  .answers li{font-size:18px}
+  .pdfBtn{width:100%;}
+}
 </style>
 </head>
 
 <body>
 <div class="wrap">
-  <header>
-    <div>
-      <h1>Writing Answers｜First / Next / Then / Last</h1>
-      <p class="note">依序寫出 First / Next / Then / Last 的完整句子（第一人稱 I）。</p>
-    </div>
 
-    <a class="pdfBtn"
-       href="Writing Answer First_Next_Then_Last.pdf"
-       download>
-      📄 下載空白練習卷
-    </a>
-  </header>
+<header>
+  <div>
+    <h1>Writing Answers｜First / Next / Then / Last</h1>
+    <p class="note">依序寫出 First / Next / Then / Last 的完整句子（第一人稱 I）。</p>
+  </div>
+  <a class="pdfBtn" href="Writing Answer First_Next_Then_Last.pdf" download>
+    📄 下載空白練習卷
+  </a>
+</header>
 
-  <!-- 1) How to Wash Your Hands / 洗手 -->
-  <section class="card">
-    <div class="top">
-      <div class="qtag">1</div>
-      <div class="badge">Handwashing</div>
-    </div>
+<!-- 1 -->
+<section class="card">
+  <div class="top">
+    <div class="qtag">1</div>
+    <div class="badge">Handwashing</div>
+  </div>
+  <div class="title">How to Wash Your Hands</div>
+  <div class="subtitleZh">洗手</div>
+  <div class="flow">→ 打開水龍頭 → 用肥皂洗 → 沖乾淨 → 擦乾</div>
+  <div class="iconsRow"><img src="1.png"></div>
+  <ul class="answers">
+    <li><span class="k">First,</span> I turn on the tap and wet my hands.</li>
+    <li><span class="k">Next,</span> I wash my hands with soap.</li>
+    <li><span class="k">Then,</span> I rinse my hands with clean water.</li>
+    <li><span class="k">Last,</span> I dry my hands with a towel.</li>
+  </ul>
+</section>
 
-    <div class="title">How to Wash Your Hands</div>
-    <div class="subtitleZh">洗手</div>
-    <div class="flow">→ 打開水龍頭並且把手弄濕 → 用肥皂洗 → 沖乾淨 → 擦乾</div>
+<!-- 2 🔴 -->
+<section class="card">
+  <div class="top">
+    <div class="qtag qtag--focus">2</div>
+    <div class="badge">Teeth</div>
+  </div>
+  <div class="title">How to Brush Your Teeth</div>
+  <div class="subtitleZh">刷牙</div>
+  <div class="flow">→ 擠牙膏 → 刷牙 → 漱口 → 吐掉</div>
+  <div class="iconsRow"><img src="2.png"></div>
+  <ul class="answers">
+    <li><span class="k">First,</span> I put toothpaste on my toothbrush.</li>
+    <li><span class="k">Next,</span> I brush my teeth.</li>
+    <li><span class="k">Then,</span> I rinse my mouth with water.</li>
+    <li><span class="k">Last,</span> I spit the water into the sink.</li>
+  </ul>
+</section>
 
-    <div class="iconsRow"><img src="1.png" alt="Wash hands 4 steps"></div>
 
-    <ul class="answers">
-      <li><span class="k">First,</span> I turn on the tap and wet my hands.</li>
-      <li><span class="k">Next,</span> I wash my hands with soap.</li>
-      <li><span class="k">Then,</span> I rinse my hands with clean water.</li>
-      <li><span class="k">Last,</span> I dry my hands with a towel.</li>
-    </ul>
-  </section>
+<!-- 6 🔴 Q 版 -->
+<section class="card">
+  <div class="top">
+    <div class="qtag qtag--focus">6</div>
+    <div class="badge">Teeth</div>
+  </div>
+  <div class="title">How to Brush Your Teeth</div>
+  <div class="subtitleZh">刷牙</div>
+  <div class="flow">→ 拿牙刷 → 擠牙膏 → 刷牙 → 放回牙刷</div>
+  <div class="iconsRow"><img src="6.png"></div>
+  <ul class="answers">
+    <li><span class="k">First,</span> I take a toothbrush.</li>
+    <li><span class="k">Next,</span> I put toothpaste on my toothbrush.</li>
+    <li><span class="k">Then,</span> I brush my teeth.</li>
+    <li><span class="k">Last,</span> I put the toothbrush back.</li>
+  </ul>
+</section>
 
-  <!-- 2) How to Brush Your Teeth / 刷牙 -->
-  <section class="card">
-    <div class="top">
-      <div class="qtag">2</div>
-      <div class="badge">Teeth</div>
-    </div>
 
-    <div class="title">How to Brush Your Teeth</div>
-    <div class="subtitleZh">刷牙</div>
-    <div class="flow">→ 擠牙膏 → 刷牙 → 漱口 → 吐掉</div>
 
-    <div class="iconsRow"><img src="2.png" alt="Brush teeth 4 steps"></div>
+<!-- 3 -->
+<section class="card">
+  <div class="top">
+    <div class="qtag">3</div>
+    <div class="badge">Wash face</div>
+  </div>
+  <div class="title">How to Wash Your Face</div>
+  <div class="subtitleZh">洗臉</div>
+  <div class="flow">→ 用水洗 → 擦臉 → 關水 → 放毛巾</div>
+  <div class="iconsRow"><img src="3.png"></div>
+  <ul class="answers">
+    <li><span class="k">First,</span> I wash my face with water.</li>
+    <li><span class="k">Next,</span> I dry my face with a towel.</li>
+    <li><span class="k">Then,</span> I turn off the tap.</li>
+    <li><span class="k">Last,</span> I hang the towel up.</li>
+  </ul>
+</section>
 
-    <ul class="answers">
-      <li><span class="k">First,</span> I put toothpaste on my toothbrush.</li>
-      <li><span class="k">Next,</span> I brush my teeth.</li>
-      <li><span class="k">Then,</span> I rinse my mouth with water.</li>
-      <li><span class="k">Last,</span> I spit the water into the sink.</li>
-    </ul>
-  </section>
+<!-- 4 -->
+<section class="card">
+  <div class="top">
+    <div class="qtag">4</div>
+    <div class="badge">School</div>
+  </div>
+  <div class="title">How to Get Ready for School</div>
+  <div class="subtitleZh">準備上學</div>
+  <div class="flow">→ 起床 → 穿衣服 → 吃早餐 → 去學校</div>
+  <div class="iconsRow"><img src="4.png"></div>
+  <ul class="answers">
+    <li><span class="k">First,</span> I get up.</li>
+    <li><span class="k">Next,</span> I get dressed.</li>
+    <li><span class="k">Then,</span> I eat breakfast.</li>
+    <li><span class="k">Last,</span> I go to school.</li>
+  </ul>
+</section>
 
-  <!-- 3) How to Wash Your Face / 洗臉 -->
-  <section class="card">
-    <div class="top">
-      <div class="qtag">3</div>
-      <div class="badge">Wash face</div>
-    </div>
+<!-- 5 -->
+<section class="card">
+  <div class="top">
+    <div class="qtag">5</div>
+    <div class="badge">Healthy</div>
+  </div>
+  <div class="title">How to Stay Healthy</div>
+  <div class="subtitleZh">保持健康</div>
+  <div class="flow">→ 洗手 → 吃健康食物 → 運動 → 早睡</div>
+  <div class="iconsRow"><img src="5.png"></div>
+  <ul class="answers">
+    <li><span class="k">First,</span> I wash my hands.</li>
+    <li><span class="k">Next,</span> I eat healthy food.</li>
+    <li><span class="k">Then,</span> I exercise every day.</li>
+    <li><span class="k">Last,</span> I go to bed early.</li>
+  </ul>
+</section>
 
-    <div class="title">How to Wash Your Face</div>
-    <div class="subtitleZh">洗臉</div>
-    <div class="flow">→ 用水洗 → 擦臉 → 關水 → 放毛巾</div>
 
-    <div class="iconsRow"><img src="3.png" alt="Wash face 4 steps"></div>
-
-    <ul class="answers">
-      <li><span class="k">First,</span> I wash my face with water.</li>
-      <li><span class="k">Next,</span> I dry my face with a towel.</li>
-      <li><span class="k">Then,</span> I turn off the tap.</li>
-      <li><span class="k">Last,</span> I hang the towel up.</li>
-    </ul>
-  </section>
-
-  <!-- 4) How to Get Ready for School / 準備上學 -->
-  <section class="card">
-    <div class="top">
-      <div class="qtag">4</div>
-      <div class="badge">School</div>
-    </div>
-
-    <div class="title">How to Get Ready for School</div>
-    <div class="subtitleZh">準備上學</div>
-    <div class="flow">→ 起床 → 穿衣服 → 吃早餐 → 去學校</div>
-
-    <div class="iconsRow"><img src="4.png" alt="Get ready for school 4 steps"></div>
-
-    <ul class="answers">
-      <li><span class="k">First,</span> I get up.</li>
-      <li><span class="k">Then,</span> I eat breakfast.</li>
-      <li><span class="k">Next,</span> I get dressed.</li>	  
-      <li><span class="k">Last,</span> I go to school.</li>
-    </ul>
-  </section>
-
-  <!-- 5) How to Stay Healthy / 保持健康 -->
-  <section class="card">
-    <div class="top">
-      <div class="qtag">5</div>
-      <div class="badge">Healthy</div>
-    </div>
-
-    <div class="title">How to Stay Healthy</div>
-    <div class="subtitleZh">保持健康</div>
-    <div class="flow">→ 洗手 → 吃健康食物 → 運動 → 早睡</div>
-
-    <div class="iconsRow sleepWrap">
-      <img src="5.png" alt="Stay healthy 4 steps">
-
-    </div>
-
-    <ul class="answers">
-      <li><span class="k">First,</span> I wash my hands.</li>
-      <li><span class="k">Next,</span> I eat healthy food.</li>
-      <li><span class="k">Then,</span> I exercise every day.</li>
-      <li><span class="k">Last,</span> I go to bed early.</li>
-    </ul>
-  </section>
 
 </div>
 </body>
