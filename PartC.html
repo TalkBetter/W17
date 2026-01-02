@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<title>TalkBetter｜Stories + Q&A</title>
+
+<style>
+  :root{
+    --bg1:#fff7fb;
+    --bg2:#f1fffb;
+    --card:#ffffff;
+    --border:#e9e7ff;
+    --text:#1f2937;
+    --sub:#6b7280;
+    --blueSoft:#eef6ff;
+    --shadow:0 14px 34px rgba(31,41,55,.10);
+    --r:22px;
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+    color:var(--text);
+    background:linear-gradient(180deg,var(--bg1),var(--bg2));
+    font-size:18px;
+  }
+
+  .wrap{max-width:980px;margin:0 auto;padding:18px 16px 44px}
+  header{
+    padding:10px 0 18px;
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:12px;
+  }
+  h1{margin:0;font-size:28px;font-weight:900;letter-spacing:.2px}
+  .btns{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}
+  .btn{
+    padding:14px 16px;
+    font-size:18px;
+    font-weight:900;
+    border-radius:18px;
+    border:1px solid var(--border);
+    background:#fff;
+    cursor:pointer;
+    box-shadow:0 10px 22px rgba(31,41,55,.06);
+    white-space:nowrap;
+  }
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:var(--r);
+    box-shadow:var(--shadow);
+    overflow:hidden;
+    margin-bottom:18px;
+  }
+
+  .card-head{
+    padding:16px 18px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    border-bottom:1px dashed var(--border);
+    background:linear-gradient(180deg,#fff,var(--blueSoft));
+  }
+  .emoji{font-size:30px;line-height:1}
+  .title{font-size:24px;font-weight:900;margin:0}
+  .meta{
+    margin-left:auto;
+    font-size:14px;
+    color:var(--sub);
+    background:rgba(255,255,255,.85);
+    border:1px solid rgba(233,231,255,.9);
+    padding:8px 10px;
+    border-radius:999px;
+    font-weight:900;
+  }
+
+  .section{
+    padding:18px;
+    display:grid;
+    gap:14px;
+  }
+  @media (min-width:860px){
+    .section{grid-template-columns: 1.05fr .95fr; align-items:start;}
+  }
+
+  .story, .qa{
+    background:#fff;
+    border:1px solid var(--border);
+    border-radius:18px;
+    padding:18px;
+  }
+
+  .story p{
+    margin:0 0 16px;
+    font-size:22px;
+    line-height:1.9;
+  }
+  .story p:last-child{margin-bottom:0}
+
+  .qa{display:grid;gap:14px}
+  .qa-item{
+    border:1px solid rgba(233,231,255,.9);
+    border-radius:16px;
+    padding:14px 14px;
+    background:linear-gradient(180deg,#fff,rgba(241,255,251,.55));
+  }
+  .q{
+    margin:0 0 8px;
+    font-size:22px;
+    font-weight:900;
+    line-height:1.35;
+  }
+  .a{
+    margin:0;
+    font-size:22px;
+    line-height:1.8;
+  }
+
+  /* ✅ 控制答案顯示/隱藏 */
+  body.answers-hidden .a{ display:none; }
+
+  @media print{
+    /* ✅ 列印時保留「當下狀態」：隱藏就不印、顯示就會印 */
+    header .btn{display:none;}
+    body{background:#fff;}
+    .card{box-shadow:none;}
+  }
+</style>
+</head>
+
+<body class="answers-hidden">
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>📘 TalkBetter｜Stories + Q&A</h1>
+      </div>
+      <div class="btns">
+        <button class="btn" id="toggleAnswers">顯示答案</button>
+        <button class="btn" onclick="window.print()">列印 / 另存 PDF</button>
+      </div>
+    </header>
+
+    <!-- 1) Bear’s Loose Tooth -->
+    <section class="card">
+      <div class="card-head">
+        <div class="emoji">🐻</div>
+        <h2 class="title">Bear’s Loose Tooth</h2>
+        <div class="meta">Story 1</div>
+      </div>
+
+      <div class="section">
+        <div class="story">
+          <p>One day, Bear was in the forest eating lunch.</p>
+          <p>He felt something wiggling in his mouth. It was his first loose tooth!</p>
+          <p>He was a little scared and did not know what to do.</p>
+          <p>His friends tried to help, but the tooth did not come out.</p>
+          <p>Finally, when Bear wiggled it again, the tooth fell out.</p>
+          <p>Bear was happy and learned that losing a tooth is part of growing up.</p>
+        </div>
+
+        <div class="qa">
+          <div class="qa-item">
+            <p class="q">Who is in the story?</p>
+            <p class="a">Bear and his friends are in the story.</p>
+          </div>
+          <div class="qa-item">
+            <p class="q">What is the setting?</p>
+            <p class="a">The story took place in the afternoon in the forest.</p>
+          </div>
+          <div class="qa-item">
+            <p class="q">What happened in the story?</p>
+            <p class="a">Bear had a loose tooth. His friends tried to help him, but it did not come out. Bear wiggled it and finally it fell out.</p>
+          </div>
+          <div class="qa-item">
+            <p class="q">Think about yourself: What did you do when you lost a tooth?</p>
+            <p class="a">I lost a tooth last year and I felt happy because I got a small gift from my family.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2) Dog’s Missing Toast -->
+    <section class="card">
+      <div class="card-head">
+        <div class="emoji">🐶</div>
+        <h2 class="title">Dog’s Missing Toast</h2>
+        <div class="meta">Story 2</div>
+      </div>
+
+      <div class="section">
+        <div class="story">
+          <p>One day, Dog was in the kitchen eating breakfast at the table.</p>
+          <p>He had toast and milk on his plate.</p>
+          <p>Suddenly, his toast fell onto the floor.</p>
+          <p>Dog felt worried and did not know what to do.</p>
+          <p>His mom tried to help him. They picked up the toast together.</p>
+          <p>Finally, Dog got a new piece of toast. Dog was happy and learned to be more careful.</p>
+        </div>
+
+        <div class="qa">
+          <div class="qa-item">
+            <p class="q">Who is in the story?</p>
+            <p class="a">Dog and his mom are in the story.</p>
+          </div>
+          <div class="qa-item">
+            <p class="q">What is the setting?</p>
+            <p class="a">The story took place in the morning in the kitchen.</p>
+          </div>
+          <div class="qa-item">
+            <p class="q">What happened in the story?</p>
+            <p class="a">Dog was eating breakfast when his toast fell onto the floor. His mom helped him, and Dog got a new piece of toast.</p>
+          </div>
+          <div class="qa-item">
+            <p class="q">Think about yourself: What did you do when you dropped your food?</p>
+            <p class="a">I dropped my food last week and I felt happy because my family helped me.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3) Tom’s Lost Toothbrush -->
+    <section class="card">
+      <div class="card-head">
+        <div class="emoji">🧑‍🦱</div>
+        <h2 class="title">Tom’s Lost Toothbrush</h2>
+        <div class="meta">Story 3</div>
+      </div>
+
+      <div class="section">
+        <div class="story">
+          <p>One day, Tom was in the bathroom.</p>
+          <p>The sky was dark outside, and Tom was getting ready for bed.</p>
+          <p>He wanted to brush his teeth, but he could not find his toothbrush.</p>
+          <p>Tom felt worried and did not know what to do.</p>
+          <p>His mom came to help him. They looked near the sink and under the towel.</p>
+          <p>Finally, Tom found the toothbrush on the floor.</p>
+          <p>Tom was happy and learned to put things back before sleeping.</p>
+        </div>
+
+        <div class="qa">
+          <div class="qa-item">
+            <p class="q">Who is in the story?</p>
+            <p class="a">Tom and his mom are in the story.</p>
+          </div>
+          <div class="qa-item">
+            <p class="q">What is the setting?</p>
+            <p class="a">The story took place in the evening in the bathroom.</p>
+          </div>
+          <div class="qa-item">
+            <p class="q">What happened in the story?</p>
+            <p class="a">Tom could not find his toothbrush when he was getting ready for bed. His mom helped him, and he found it on the floor.</p>
+          </div>
+          <div class="qa-item">
+            <p class="q">Think about yourself: What did you do when you could not find something?</p>
+            <p class="a">I could not find my pencil last week, and my family helped me.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4) Alex’s First Swimming Lesson -->
+    <section class="card">
+      <div class="card-head">
+        <div class="emoji">🏊</div>
+        <h2 class="title">Alex’s First Swimming Lesson</h2>
+        <div class="meta">Story 4</div>
+      </div>
+
+      <div class="section">
+        <div class="story">
+          <p>One day, Alex was at the swimming pool after eating lunch.</p>
+          <p>He wore his swimsuit and waited by the pool.</p>
+          <p>The water looked deep, and Alex felt a little nervous.</p>
+          <p>Alex did not know what to do.</p>
+          <p>His dad stood next to him and talked to him.</p>
+          <p>Alex slowly went into the water.</p>
+          <p>Finally, Alex began to swim by himself.</p>
+          <p>Alex was happy and learned that trying new things can be fun.</p>
+        </div>
+
+        <div class="qa">
+          <div class="qa-item">
+            <p class="q">Who is in the story?</p>
+            <p class="a">Alex and his dad are in the story.</p>
+          </div>
+          <div class="qa-item">
+            <p class="q">What is the setting?</p>
+            <p class="a">The story took place in the afternoon at the swimming pool.</p>
+          </div>
+          <div class="qa-item">
+            <p class="q">What happened in the story?</p>
+            <p class="a">Alex felt nervous about swimming at first. His dad helped him, and Alex learned how to swim.</p>
+          </div>
+          <div class="qa-item">
+            <p class="q">Think about yourself: What did you do when you tried something new?</p>
+            <p class="a">I tried swimming for the first time, and my family helped me.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+<script>
+  const btn = document.getElementById('toggleAnswers');
+
+  function setAnswerState(hidden){
+    document.body.classList.toggle('answers-hidden', hidden);
+    btn.textContent = hidden ? '顯示答案' : '隱藏答案';
+    // ✅ 記住狀態（重新整理頁面也保留）
+    localStorage.setItem('talkbetter_answers_hidden', hidden ? '1' : '0');
+  }
+
+  // 初始化：預設隱藏，若使用者之前切換過則沿用
+  const saved = localStorage.getItem('talkbetter_answers_hidden');
+  setAnswerState(saved === null ? true : (saved === '1'));
+
+  btn.addEventListener('click', ()=>{
+    setAnswerState(!document.body.classList.contains('answers-hidden'));
+  });
+</script>
+</body>
+</html>
