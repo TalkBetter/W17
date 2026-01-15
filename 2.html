@@ -3,226 +3,263 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>二下生字｜每天5個</title>
+<title>今天的5個生字 💙</title>
 
 <style>
-  body{
-    margin:0;
-    background:#f5f7ff;
-    font-family: "Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;
-  }
-  header{
-    background:#ffffff;
-    padding:16px;
-    position:sticky;
-    top:0;
-    box-shadow:0 6px 18px rgba(0,0,0,.08);
-    z-index:10;
-  }
-  h1{
-    margin:0;
-    font-size:28px;
-    font-weight:900;
-  }
-  .sub{
-    margin-top:6px;
-    color:#555;
-    font-size:16px;
-  }
-  .progress-wrap{
-    margin-top:12px;
-    display:flex;
-    align-items:center;
-    gap:12px;
-  }
-  .progress{
-    flex:1;
-    height:14px;
-    background:#e5e7eb;
-    border-radius:99px;
-    overflow:hidden;
-  }
-  .progress div{
-    height:100%;
-    width:0%;
-    background:#2563eb;
-    transition:width .3s;
-  }
-  .wrap{
-    max-width:900px;
-    margin:0 auto;
-    padding:16px;
-  }
-  .day{
-    background:#fff;
-    border-radius:18px;
-    padding:16px;
-    margin-bottom:14px;
-    box-shadow:0 10px 22px rgba(0,0,0,.08);
-  }
-  .day-header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-  }
-  .day-title{
-    font-size:22px;
-    font-weight:900;
-  }
-  .check{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    font-size:20px;
-    font-weight:800;
-  }
-  input[type="checkbox"]{
-    width:28px;
-    height:28px;
-    accent-color:#16a34a;
-  }
-  .chars{
-    margin-top:14px;
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px;
-  }
-  .char{
-    font-size:36px;
-    font-weight:900;
-    padding:12px 18px;
-    border-radius:16px;
-    background:#f9fafb;
-    border:2px solid #e5e7eb;
-    letter-spacing:4px;
-  }
-  footer{
-    text-align:center;
-    color:#666;
-    padding:16px 0 30px;
-    font-size:14px;
-  }
-  button{
-    font-size:16px;
-    font-weight:800;
-    padding:10px 14px;
-    border-radius:14px;
-    border:1px solid #ddd;
-    background:#fff;
-    cursor:pointer;
-  }
+:root{
+  --bg1:#eef6ff;
+  --bg2:#f8fbff;
+  --card:#ffffff;
+  --main:#3b82f6;
+  --soft:#bfdbfe;
+  --ok:#22c55e;
+}
+body{
+  margin:0;
+  min-height:100vh;
+  background:linear-gradient(180deg,var(--bg1),var(--bg2));
+  font-family:"Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;
+}
+header{
+  background:#ffffff;
+  padding:14px;
+  text-align:center;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
+}
+h1{
+  margin:0;
+  font-size:28px;
+  font-weight:900;
+}
+.sub{
+  margin-top:4px;
+  font-size:15px;
+  color:#555;
+}
+.progress-wrap{
+  margin-top:10px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.progress{
+  flex:1;
+  height:14px;
+  background:#e5efff;
+  border-radius:99px;
+  overflow:hidden;
+}
+.progress div{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg,#60a5fa,#3b82f6);
+  transition:width .3s;
+}
+.wrap{
+  max-width:520px;
+  margin:0 auto;
+  padding:20px 16px 40px;
+}
+.card{
+  background:var(--card);
+  border-radius:28px;
+  padding:22px;
+  box-shadow:0 14px 28px rgba(0,0,0,.12);
+  text-align:center;
+}
+.nav{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:10px;
+}
+.nav button{
+  background:#dbeafe;
+  border:none;
+  padding:8px 14px;
+  border-radius:999px;
+  font-size:18px;
+  font-weight:900;
+  cursor:pointer;
+}
+.day{
+  font-size:22px;
+  font-weight:900;
+  color:var(--main);
+}
+.animal{
+  font-size:64px;
+  margin:8px 0;
+}
+.tip{
+  font-size:15px;
+  color:#555;
+}
+.chars{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:16px;
+  margin:18px 0;
+}
+.char{
+  font-size:46px;
+  font-weight:900;
+  padding:18px 22px;
+  border-radius:22px;
+  background:linear-gradient(180deg,#ffffff,#eff6ff);
+  border:3px solid var(--soft);
+  letter-spacing:6px;
+}
+.finish label{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-size:22px;
+  font-weight:900;
+}
+input[type="checkbox"]{
+  width:32px;
+  height:32px;
+  accent-color:var(--ok);
+}
+.confetti{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+}
+.confetti span{
+  position:absolute;
+  top:-20px;
+  font-size:22px;
+  animation:fall 1.6s linear forwards;
+}
+@keyframes fall{
+  to{ transform:translateY(110vh) rotate(360deg); opacity:0; }
+}
+footer{
+  text-align:center;
+  color:#666;
+  font-size:14px;
+  margin-top:16px;
+}
 </style>
 </head>
 
 <body>
 <header>
-  <h1>📘 二下生字｜每天 5 個</h1>
-  <div class="sub">✔ 不分課別　✔ 字大好寫　✔ 勾選會自動記住</div>
-
+  <h1>💙 今天的 5 個生字</h1>
+  <div class="sub" id="progressText"></div>
   <div class="progress-wrap">
-    <span id="count">0 / 43 天</span>
     <div class="progress"><div id="bar"></div></div>
-    <button onclick="resetAll()">重來</button>
   </div>
 </header>
 
-<div class="wrap" id="list"></div>
+<div class="wrap">
+  <div class="card">
+    <div class="nav">
+      <button onclick="prevDay()">◀</button>
+      <button onclick="nextDay()">▶</button>
+    </div>
 
-<footer>
-  ✏️ 每個字寫 3～5 行就好 ｜ 👀 大聲念一次也算完成
-</footer>
+    <div class="day" id="dayText"></div>
+    <div class="animal" id="animal"></div>
+    <div class="tip">慢慢寫，寫漂亮就好 ✏️</div>
 
-<script>
-const days = [
-["旅","行","妙","公","園"],
-["針","尖","搭","士","貓"],
-["車","探","險","黑","傘"],
-["吹","世","界","第","精"],
-["滴","迷","滑","圈","昏"],
-["甩","丟","掉","流","浪"],
-["救","覺","植","枯","渴"],
-["死","落","湖","迎","喜"],
-["希","望","柔","經","珍"],
-["珠","入","場","雨","漠"],
-["式","非","壯","觀","農"],
-["夫","稻","喝","飽","蚯"],
-["蚓","扭","尾","淹","泥"],
-["蝌","蚪","努","塘","爺"],
-["搞","楚","負","責","收"],
-["漸","雖","換","工","現"],
-["總","親","切","於","察"],
-["法","方","利","合","改"],
-["從","臺","夠","昨","球"],
-["捧","腹","告","訴","整"],
-["廁","所","踢","足","比"],
-["信","讓","祝","男","孩"],
-["靜","晨","傳","雞","吵"],
-["雜","女","窩","啄","母"],
-["求","助","離","些","凡"],
-["迪","約","歲","燈","已"],
-["電","賣","貴","買","料"],
-["燒","功","絲","失","敗"],
-["終","造","持","宜","調"],
-["盤","配","藍","紙","顏"],
-["魔","虹","幾","消","難"],
-["呵","將","橙","棒","神"],
-["鴨","其","特","塊","遇"],
-["碰","破","碗","煩","雪"],
-["餓","縮","孤","單","淚"],
-["悄","羽","伴","蜘","蛛"],
-["鴿","裂","痕","拜","託"],
-["寶","貝","處","件","補"],
-["內","石","算","吐","顧"],
-["玉","搗","藥","姑","娘"],
-["養","仙","吳","躺","鬧"],
-["受","桂","砍","棍","操"],
-["夜","運","招","旅","行"] // 補複習
-];
+    <div class="chars" id="chars"></div>
 
-const list = document.getElementById("list");
-
-days.forEach((chars,i)=>{
-  const key = "day"+(i+1);
-  const done = localStorage.getItem(key)==="1";
-
-  const div = document.createElement("div");
-  div.className="day";
-  div.innerHTML = `
-    <div class="day-header">
-      <div class="day-title">Day ${i+1}</div>
-      <label class="check">
-        <input type="checkbox" ${done?"checked":""}
-          onchange="toggle(${i+1},this.checked)">
-        完成
+    <div class="finish">
+      <label>
+        <input type="checkbox" id="doneBox">
+        今天完成了！
       </label>
     </div>
-    <div class="chars">
-      ${chars.map(c=>`<div class="char">${c}</div>`).join("")}
-    </div>
-  `;
-  list.appendChild(div);
-});
+  </div>
 
-function toggle(day,val){
-  localStorage.setItem("day"+day, val?"1":"0");
-  update();
+  <footer>🌟 寫 3 行也算完成 🌟</footer>
+</div>
+
+<div class="confetti" id="confetti"></div>
+
+<script>
+const animals = ["🐰","🐻","🐱"];
+
+const days = [
+["旅","行","妙","公","園"],["針","尖","搭","士","貓"],["車","探","險","黑","傘"],
+["吹","世","界","第","精"],["滴","迷","滑","圈","昏"],["甩","丟","掉","流","浪"],
+["救","覺","植","枯","渴"],["死","落","湖","迎","喜"],["希","望","柔","經","珍"],
+["珠","入","場","雨","漠"],["式","非","壯","觀","農"],["夫","稻","喝","飽","蚯"],
+["蚓","扭","尾","淹","泥"],["蝌","蚪","努","塘","爺"],["搞","楚","負","責","收"],
+["漸","雖","換","工","現"],["總","親","切","於","察"],["法","方","利","合","改"],
+["從","臺","夠","昨","球"],["捧","腹","告","訴","整"],["廁","所","踢","足","比"],
+["信","讓","祝","男","孩"],["靜","晨","傳","雞","吵"],["雜","女","窩","啄","母"],
+["求","助","離","些","凡"],["迪","約","歲","燈","已"],["電","賣","貴","買","料"],
+["燒","功","絲","失","敗"],["終","造","持","宜","調"],["盤","配","藍","紙","顏"],
+["魔","虹","幾","消","難"],["呵","將","橙","棒","神"],["鴨","其","特","塊","遇"],
+["碰","破","碗","煩","雪"],["餓","縮","孤","單","淚"],["悄","羽","伴","蜘","蛛"],
+["鴿","裂","痕","拜","託"],["寶","貝","處","件","補"],["內","石","算","吐","顧"],
+["玉","搗","藥","姑","娘"],["養","仙","吳","躺","鬧"],["受","桂","砍","棍","操"],
+["夜","運","招","旅","行"]
+];
+
+let day = Number(localStorage.getItem("todayIndex") || 0);
+if(day<0) day=0;
+if(day>=days.length) day=days.length-1;
+
+function render(){
+  document.getElementById("dayText").textContent = `Day ${day+1}`;
+  document.getElementById("animal").textContent = animals[day % animals.length];
+
+  const charsDiv = document.getElementById("chars");
+  charsDiv.innerHTML="";
+  days[day].forEach(c=>{
+    const d=document.createElement("div");
+    d.className="char";
+    d.textContent=c;
+    charsDiv.appendChild(d);
+  });
+
+  const doneBox=document.getElementById("doneBox");
+  doneBox.checked = localStorage.getItem("done_"+day)==="1";
+  doneBox.onchange=()=>{
+    if(doneBox.checked){
+      localStorage.setItem("done_"+day,"1");
+      celebrate();
+    }else{
+      localStorage.removeItem("done_"+day);
+    }
+    updateProgress();
+  };
+
+  updateProgress();
 }
-function resetAll(){
-  if(confirm("確定全部清除進度？")){
-    days.forEach((_,i)=>localStorage.removeItem("day"+(i+1)));
-    location.reload();
-  }
-}
-function update(){
+
+function prevDay(){ if(day>0){ day--; localStorage.setItem("todayIndex",day); render(); } }
+function nextDay(){ if(day<days.length-1){ day++; localStorage.setItem("todayIndex",day); render(); } }
+
+function updateProgress(){
   let done=0;
   days.forEach((_,i)=>{
-    if(localStorage.getItem("day"+(i+1))==="1") done++;
+    if(localStorage.getItem("done_"+i)==="1") done++;
   });
-  document.getElementById("count").innerText = done+" / "+days.length+" 天";
+  document.getElementById("progressText").textContent =
+    `進度：${done} / ${days.length} 天`;
   document.getElementById("bar").style.width =
     (done/days.length*100)+"%";
 }
-update();
+
+function celebrate(){
+  const box=document.getElementById("confetti");
+  for(let i=0;i<40;i++){
+    const s=document.createElement("span");
+    s.textContent=["🎉","✨","💙","⭐","🎈"][Math.floor(Math.random()*5)];
+    s.style.left=Math.random()*100+"vw";
+    s.style.animationDuration=(1+Math.random())+"s";
+    box.appendChild(s);
+    setTimeout(()=>s.remove(),1800);
+  }
+}
+
+render();
 </script>
 </body>
 </html>
