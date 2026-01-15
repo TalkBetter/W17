@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>二下生字｜每天5個</title>
+
+<style>
+  body{
+    margin:0;
+    background:#f5f7ff;
+    font-family: "Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;
+  }
+  header{
+    background:#ffffff;
+    padding:16px;
+    position:sticky;
+    top:0;
+    box-shadow:0 6px 18px rgba(0,0,0,.08);
+    z-index:10;
+  }
+  h1{
+    margin:0;
+    font-size:28px;
+    font-weight:900;
+  }
+  .sub{
+    margin-top:6px;
+    color:#555;
+    font-size:16px;
+  }
+  .progress-wrap{
+    margin-top:12px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .progress{
+    flex:1;
+    height:14px;
+    background:#e5e7eb;
+    border-radius:99px;
+    overflow:hidden;
+  }
+  .progress div{
+    height:100%;
+    width:0%;
+    background:#2563eb;
+    transition:width .3s;
+  }
+  .wrap{
+    max-width:900px;
+    margin:0 auto;
+    padding:16px;
+  }
+  .day{
+    background:#fff;
+    border-radius:18px;
+    padding:16px;
+    margin-bottom:14px;
+    box-shadow:0 10px 22px rgba(0,0,0,.08);
+  }
+  .day-header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .day-title{
+    font-size:22px;
+    font-weight:900;
+  }
+  .check{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:20px;
+    font-weight:800;
+  }
+  input[type="checkbox"]{
+    width:28px;
+    height:28px;
+    accent-color:#16a34a;
+  }
+  .chars{
+    margin-top:14px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .char{
+    font-size:36px;
+    font-weight:900;
+    padding:12px 18px;
+    border-radius:16px;
+    background:#f9fafb;
+    border:2px solid #e5e7eb;
+    letter-spacing:4px;
+  }
+  footer{
+    text-align:center;
+    color:#666;
+    padding:16px 0 30px;
+    font-size:14px;
+  }
+  button{
+    font-size:16px;
+    font-weight:800;
+    padding:10px 14px;
+    border-radius:14px;
+    border:1px solid #ddd;
+    background:#fff;
+    cursor:pointer;
+  }
+</style>
+</head>
+
+<body>
+<header>
+  <h1>📘 二下生字｜每天 5 個</h1>
+  <div class="sub">✔ 不分課別　✔ 字大好寫　✔ 勾選會自動記住</div>
+
+  <div class="progress-wrap">
+    <span id="count">0 / 43 天</span>
+    <div class="progress"><div id="bar"></div></div>
+    <button onclick="resetAll()">重來</button>
+  </div>
+</header>
+
+<div class="wrap" id="list"></div>
+
+<footer>
+  ✏️ 每個字寫 3～5 行就好 ｜ 👀 大聲念一次也算完成
+</footer>
+
+<script>
+const days = [
+["旅","行","妙","公","園"],
+["針","尖","搭","士","貓"],
+["車","探","險","黑","傘"],
+["吹","世","界","第","精"],
+["滴","迷","滑","圈","昏"],
+["甩","丟","掉","流","浪"],
+["救","覺","植","枯","渴"],
+["死","落","湖","迎","喜"],
+["希","望","柔","經","珍"],
+["珠","入","場","雨","漠"],
+["式","非","壯","觀","農"],
+["夫","稻","喝","飽","蚯"],
+["蚓","扭","尾","淹","泥"],
+["蝌","蚪","努","塘","爺"],
+["搞","楚","負","責","收"],
+["漸","雖","換","工","現"],
+["總","親","切","於","察"],
+["法","方","利","合","改"],
+["從","臺","夠","昨","球"],
+["捧","腹","告","訴","整"],
+["廁","所","踢","足","比"],
+["信","讓","祝","男","孩"],
+["靜","晨","傳","雞","吵"],
+["雜","女","窩","啄","母"],
+["求","助","離","些","凡"],
+["迪","約","歲","燈","已"],
+["電","賣","貴","買","料"],
+["燒","功","絲","失","敗"],
+["終","造","持","宜","調"],
+["盤","配","藍","紙","顏"],
+["魔","虹","幾","消","難"],
+["呵","將","橙","棒","神"],
+["鴨","其","特","塊","遇"],
+["碰","破","碗","煩","雪"],
+["餓","縮","孤","單","淚"],
+["悄","羽","伴","蜘","蛛"],
+["鴿","裂","痕","拜","託"],
+["寶","貝","處","件","補"],
+["內","石","算","吐","顧"],
+["玉","搗","藥","姑","娘"],
+["養","仙","吳","躺","鬧"],
+["受","桂","砍","棍","操"],
+["夜","運","招","旅","行"] // 補複習
+];
+
+const list = document.getElementById("list");
+
+days.forEach((chars,i)=>{
+  const key = "day"+(i+1);
+  const done = localStorage.getItem(key)==="1";
+
+  const div = document.createElement("div");
+  div.className="day";
+  div.innerHTML = `
+    <div class="day-header">
+      <div class="day-title">Day ${i+1}</div>
+      <label class="check">
+        <input type="checkbox" ${done?"checked":""}
+          onchange="toggle(${i+1},this.checked)">
+        完成
+      </label>
+    </div>
+    <div class="chars">
+      ${chars.map(c=>`<div class="char">${c}</div>`).join("")}
+    </div>
+  `;
+  list.appendChild(div);
+});
+
+function toggle(day,val){
+  localStorage.setItem("day"+day, val?"1":"0");
+  update();
+}
+function resetAll(){
+  if(confirm("確定全部清除進度？")){
+    days.forEach((_,i)=>localStorage.removeItem("day"+(i+1)));
+    location.reload();
+  }
+}
+function update(){
+  let done=0;
+  days.forEach((_,i)=>{
+    if(localStorage.getItem("day"+(i+1))==="1") done++;
+  });
+  document.getElementById("count").innerText = done+" / "+days.length+" 天";
+  document.getElementById("bar").style.width =
+    (done/days.length*100)+"%";
+}
+update();
+</script>
+</body>
+</html>
